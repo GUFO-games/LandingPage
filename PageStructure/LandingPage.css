@@ -1,0 +1,378 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Animated background */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #0a0a0a, #1a0a2a, #0a0a0a);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    10% { transform: translate(-2px, -2px); }
+    20% { transform: translate(2px, 2px); }
+    30% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    70% { transform: translate(-2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    90% { transform: translate(-2px, -2px); }
+}
+
+/* Header */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/><g fill="%23663399" opacity="0.1"><path d="M100 200h100v100h-100zM300 400h100v100h-100zM500 100h100v100h-100zM700 300h100v100h-100zM900 500h100v100h-100z"/></g></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-logo {
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 8px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, #663399, #ff0066, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from { filter: drop-shadow(0 0 20px #663399); }
+    to { filter: drop-shadow(0 0 30px #00ffff); }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.cta-button {
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #663399, #ff0066);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 0 20px rgba(102, 51, 153, 0.5);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 51, 153, 0.8);
+    background: linear-gradient(45deg, #ff0066, #663399);
+}
+
+/* Sections */
+.section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #663399;
+    text-shadow: 0 0 10px #663399;
+}
+
+.section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Game Info Section */
+.game-info {
+    background: rgba(102, 51, 153, 0.1);
+    border: 1px solid #663399;
+    border-radius: 20px;
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-info::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translate(-100%, -100%) rotate(45deg); }
+    100% { transform: translate(100%, 100%) rotate(45deg); }
+}
+
+.game-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.feature {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid #00ffff;
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+}
+
+.feature h3 {
+    color: #ff0066;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Media Gallery */
+.media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.media-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #663399;
+    transition: all 0.3s ease;
+}
+
+.media-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #663399;
+}
+
+.media-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.media-placeholder {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(45deg, #1a1a1a, #663399);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #00ffff;
+}
+
+/* Links Section */
+.links-section {
+    background: rgba(255, 0, 102, 0.1);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.link-card {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 2px solid #ff0066;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+}
+
+.link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 0, 102, 0.3);
+    border-color: #00ffff;
+}
+
+.link-card h3 {
+    color: #ff0066;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Team Section */
+.team-section {
+    background: rgba(0, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 2px solid #00ffff;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #663399;
+    margin: 0 auto 1rem;
+    background: linear-gradient(45deg, #663399, #00ffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.member-name {
+    color: #00ffff;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-role {
+    color: #ff0066;
+    margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background: rgba(102, 51, 153, 0.1);
+    border-radius: 20px;
+    padding: 4rem 2rem;
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.contact-email {
+    font-size: 1.5rem;
+    color: #00ffff;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 2px solid #00ffff;
+    border-radius: 30px;
+    display: inline-block;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-email:hover {
+    background: #00ffff;
+    color: #000;
+    transform: scale(1.05);
+}
+
+/* Scroll effects */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-logo {
+        font-size: 3rem;
+        letter-spacing: 4px;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
