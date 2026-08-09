@@ -1,0 +1,49 @@
+---
+import { LINKS, useTranslations, type Locale } from '../i18n';
+import SocialIcon from './SocialIcon.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const socials = [
+  { name: 'youtube', label: 'YouTube', href: LINKS.youtube },
+  { name: 'instagram', label: 'Instagram', href: LINKS.instagram },
+  { name: 'tiktok', label: 'TikTok', href: LINKS.tiktok },
+  { name: 'facebook', label: 'Facebook', href: LINKS.facebook },
+  { name: 'reddit', label: 'Reddit', href: LINKS.reddit },
+] as const;
+---
+<section id="community" class="section community-section scroll-fade">
+  <div class="section-inner">
+    <h2>{t('community.heading')}</h2>
+    <p class="section-intro">{t('community.sub')}</p>
+
+    <div class="community-grid">
+      <a class="comm-tile comm-steam scroll-fade" href={LINKS.steam} target="_blank" rel="noopener">
+        <div class="tile-icon"><SocialIcon name="steam" /></div>
+        <div class="tile-info">
+          <h3>{t('community.steam.title')}</h3>
+          <p>{t('community.steam.body')}</p>
+        </div>
+      </a>
+
+      <a class="comm-tile comm-discord scroll-fade" href={LINKS.discord} target="_blank" rel="noopener">
+        <div class="tile-icon"><SocialIcon name="discord" /></div>
+        <div class="tile-info">
+          <h3>{t('community.discord.title')}</h3>
+          <p>{t('community.discord.body')}</p>
+        </div>
+      </a>
+
+      <div class="community-others scroll-fade">
+        {socials.map((s) => (
+          <a class="social-chip" href={s.href} target="_blank" rel="noopener" aria-label={s.label}>
+            <SocialIcon name={s.name} class="chip-icon" />
+            <span>{s.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

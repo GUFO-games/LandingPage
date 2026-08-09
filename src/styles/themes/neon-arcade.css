@@ -1,0 +1,165 @@
+/* ============================================================
+   VARIANT A — NEON ARCADE (synthwave cabinet)
+   Loud neon, tamed glitch, score-attack arcade energy.
+   ============================================================ */
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
+@import '@fontsource/press-start-2p/index.css';
+
+html[data-theme='neon-arcade'] {
+  --bg-0: #0a0614;
+  --bg-1: #1a0a2e;
+  --surface: rgba(16, 9, 34, 0.82);
+  --border: rgba(139, 92, 246, 0.35);
+  --accent-1: #00f0ff;
+  --accent-2: #ff2975;
+  --accent-3: #8b5cf6;
+  --text: #eae6ff;
+  --text-muted: #b8aee6;
+  --glow-1: 0 0 8px rgba(0, 240, 255, 0.8), 0 0 24px rgba(0, 240, 255, 0.35);
+  --glow-2: 0 0 8px rgba(255, 41, 117, 0.8), 0 0 24px rgba(255, 41, 117, 0.35);
+  --radius: 4px;
+  --font-display: 'Space Mono', monospace;
+  --font-body: 'Space Mono', monospace;
+  --font-pixel: 'Press Start 2P', monospace;
+}
+
+/* CRT scanline overlay across the whole page */
+[data-theme='neon-arcade'] .bg-scene::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+/* Faint hex-tile glow field */
+[data-theme='neon-arcade'] .bg-scene::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(139, 92, 246, 0.16), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 80% 85%, rgba(255, 41, 117, 0.1), transparent 60%);
+}
+
+/* Hero: glitch title over hex grid */
+[data-theme='neon-arcade'] .hero-scene {
+  background-image:
+    linear-gradient(30deg, transparent 48%, rgba(0, 240, 255, 0.05) 49%, rgba(0, 240, 255, 0.05) 51%, transparent 52%),
+    linear-gradient(150deg, transparent 48%, rgba(0, 240, 255, 0.05) 49%, rgba(0, 240, 255, 0.05) 51%, transparent 52%),
+    linear-gradient(90deg, transparent 48%, rgba(139, 92, 246, 0.06) 49%, rgba(139, 92, 246, 0.06) 51%, transparent 52%);
+  background-size: 68px 118px;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 45%, #000 30%, transparent 75%);
+}
+[data-theme='neon-arcade'] .hero-logo {
+  text-shadow: var(--glow-1);
+  position: relative;
+}
+[data-theme='neon-arcade'] .hero-logo-ai { text-shadow: var(--glow-2); }
+
+/* Interval-triggered glitch burst (JS-free: long-period keyframes, active 4% of the cycle) */
+@keyframes na-glitch {
+  0%, 94%, 100% { transform: none; opacity: 1; }
+  95% { transform: translate(2px, -1px) skewX(2deg); opacity: 0.9; }
+  96% { transform: translate(-3px, 1px); }
+  97% { transform: translate(1px, 0) skewX(-1deg); opacity: 0.95; }
+  98% { transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme='neon-arcade'] .hero-logo { animation: na-glitch 5.5s infinite steps(1, end); }
+}
+
+/* Arcade marquee CTA with insert-coin pulse */
+[data-theme='neon-arcade'] .cta-primary {
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  border: none;
+}
+@keyframes na-coin-pulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255, 41, 117, 0.8), 0 0 24px rgba(255, 41, 117, 0.35); }
+  50% { box-shadow: 0 0 14px rgba(255, 41, 117, 1), 0 0 40px rgba(255, 41, 117, 0.55); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme='neon-arcade'] .hero .cta-primary { animation: na-coin-pulse 2s ease-in-out infinite; }
+}
+
+/* Feature cards as cabinet marquees with level chips */
+[data-theme='neon-arcade'] .feature {
+  position: relative;
+  border-width: 2px;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.2s ease;
+}
+[data-theme='neon-arcade'] .feature::before {
+  content: 'LV.' attr(data-index);
+  position: absolute;
+  top: -0.7rem; left: 1rem;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: var(--bg-0);
+  background: var(--accent-1);
+  clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+}
+[data-theme='neon-arcade'] .feature:hover {
+  transform: rotate(-0.4deg) translateY(-3px);
+  box-shadow: 0 0 0 1px var(--accent-3), 0 12px 40px rgba(139, 92, 246, 0.25);
+}
+[data-theme='neon-arcade'] .feature-media { position: relative; }
+[data-theme='neon-arcade'] .feature-media::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 3px);
+}
+
+/* Section headings with neon underline */
+[data-theme='neon-arcade'] .section h2 {
+  text-shadow: var(--glow-1);
+}
+[data-theme='neon-arcade'] .section h2::after {
+  content: '';
+  display: block;
+  width: 90px; height: 2px;
+  margin: 0.7rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+  box-shadow: var(--glow-2);
+}
+
+/* Trailer screen bezel */
+[data-theme='neon-arcade'] .yt-card {
+  border: 3px solid var(--accent-3);
+  box-shadow: 0 0 0 1px var(--bg-0), 0 0 24px rgba(139, 92, 246, 0.3);
+}
+
+/* Community: Steam tile is the loudest element on the page */
+[data-theme='neon-arcade'] .comm-steam {
+  border-width: 2px;
+  background:
+    linear-gradient(135deg, rgba(255, 41, 117, 0.12), transparent 55%),
+    var(--surface);
+}
+[data-theme='neon-arcade'] .comm-steam .tile-info h3 { text-shadow: var(--glow-2); }
+
+/* Team cards: high-score entries */
+[data-theme='neon-arcade'] .team-member { border-top: 2px solid var(--accent-1); }
+[data-theme='neon-arcade'] .member-rank { font-family: var(--font-pixel); font-size: 0.5rem; }
+[data-theme='neon-arcade'] .member-name { color: var(--accent-1); }
+
+/* Nav flicker hover */
+@keyframes na-flicker { 0%, 100% { opacity: 1; } 45% { opacity: 0.55; } 55% { opacity: 0.9; } }
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme='neon-arcade'] #primary-nav > a:hover { animation: na-flicker 0.18s steps(2, end) 1; }
+}
+
+/* Feedback page: SELECT LANGUAGE arcade menu */
+[data-theme='neon-arcade'] .feedback-logo { text-shadow: var(--glow-1); }
+[data-theme='neon-arcade'] .form-card { border-width: 2px; }
+[data-theme='neon-arcade'] .form-card h3 { color: var(--accent-1); }
+[data-theme='neon-arcade'] .feedback-warning {
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 41, 117, 0.06) 0 12px, transparent 12px 24px),
+    color-mix(in srgb, var(--accent-2) 6%, transparent);
+}

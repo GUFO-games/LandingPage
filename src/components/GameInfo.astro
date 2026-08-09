@@ -1,0 +1,51 @@
+---
+import { useTranslations, type Locale } from '../i18n';
+import { Picture } from 'astro:assets';
+import imgCombat from '../assets/screenshots/ImmagineProvaGioco.png';
+import imgTime from '../assets/screenshots/ImmagineProvaTempo.png';
+import imgPower from '../assets/screenshots/ImmagineProvaPowerUps.png';
+import imgCollect from '../assets/screenshots/ImmagineProvaCollect.png';
+import imgWorld from '../assets/screenshots/ImmagineProvaAlienWorld.png';
+import imgProc from '../assets/screenshots/ImmagineProvaProcedural.png';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const features = [
+  { key: 'f1', img: imgCombat },
+  { key: 'f2', img: imgTime },
+  { key: 'f3', img: imgPower },
+  { key: 'f4', img: imgCollect },
+  { key: 'f5', img: imgWorld },
+  { key: 'f6', img: imgProc },
+] as const;
+---
+<section id="game-info" class="section game-info scroll-fade">
+  <div class="section-inner">
+    <h2>{t('game.heading')}</h2>
+    <p class="section-intro">{t('game.intro')}</p>
+
+    <div class="game-features">
+      {features.map(({ key, img }, i) => (
+        <article class={`feature scroll-fade ${i % 2 === 1 ? 'reverse' : ''}`} data-index={String(i + 1).padStart(2, '0')}>
+          <div class="feature-text">
+            <h3>{t(`game.${key}.title` as 'game.f1.title')}</h3>
+            <p>{t(`game.${key}.body` as 'game.f1.body')}</p>
+          </div>
+          <div class="feature-media">
+            <Picture
+              src={img}
+              alt={t(`game.${key}.alt` as 'game.f1.alt')}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              formats={['avif', 'webp']}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+---
+import { TEAM, useTranslations, type Locale } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const initials = (name: string) =>
+  name.split(' ').map((w) => w[0]).slice(0, 2).join('');
+---
+<section id="team" class="section team-section scroll-fade">
+  <div class="section-inner">
+    <h2>{t('team.heading')}</h2>
+    <p class="section-intro">{t('team.sub')}</p>
+
+    <div class="team-carousel" role="region" aria-label={t('team.carouselLabel')}>
+      <button class="carousel-arrow prev" aria-label={t('team.prev')}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="viewport" tabindex="0">
+        <ul class="track" aria-live="polite">
+          {TEAM.map((m, i) => (
+            <li class="team-member">
+              <div class="member-photo" aria-hidden="true">
+                {/* Themed avatar frame: SVG badge with member initials (asset request list: real art later) */}
+                <svg viewBox="0 0 96 96" class="avatar-svg">
+                  <polygon class="avatar-frame" points="48,4 86,26 86,70 48,92 10,70 10,26" />
+                  <polygon class="avatar-frame-inner" points="48,12 79,30 79,66 48,84 17,66 17,30" />
+                  <text x="48" y="55" text-anchor="middle" class="avatar-initials">{initials(m.name)}</text>
+                </svg>
+                <span class="member-rank" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="member-name">{m.name}</h3>
+              <p class="member-role">{m.role}</p>
+              <p class="member-bio">{m.bio}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <button class="carousel-arrow next" aria-label={t('team.next')}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="carousel-dots" role="tablist" aria-label={t('team.pagesLabel')} data-label={t('team.goToPage')}></div>
+    </div>
+  </div>
+</section>

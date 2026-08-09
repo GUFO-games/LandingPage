@@ -1,0 +1,37 @@
+---
+import { VIDEO_IDS, useTranslations, type Locale } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section id="trailer" class="section trailer-section scroll-fade">
+  <div class="section-inner">
+    <h2>{t('trailers.heading')}</h2>
+
+    <div class="vc" role="region" aria-label={t('trailers.carouselLabel')}>
+      <button class="vc-arrow vc-arrow-prev" aria-label={t('trailers.prev')}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="vc-viewport" tabindex="0">
+        <ul class="vc-track">
+          {VIDEO_IDS.map((id, i) => (
+            <li class="vc-slide">
+              <div class="yt-card" data-video-id={id} aria-label={`${t('trailers.playVideo')} ${i + 1}`} role="button" tabindex="0">
+                <img class="yt-thumb" alt={`${t('trailers.thumbAlt')} ${i + 1}`} loading="lazy" width="480" height="360" />
+                <div class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <button class="vc-arrow vc-arrow-next" aria-label={t('trailers.next')}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="vc-dots" role="tablist" aria-label={t('trailers.pagesLabel')} data-label={t('trailers.goToVideo')}></div>
+    </div>
+  </div>
+</section>

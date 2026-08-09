@@ -1,0 +1,39 @@
+---
+import { LINKS, useTranslations, type Locale } from '../i18n';
+import SocialIcon from './SocialIcon.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import gufoLogo from '../assets/GUFO.png';
+import { Image } from 'astro:assets';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<header class="site-header" id="top">
+  <a href="#LandingTitle" class="brand">
+    <Image src={gufoLogo} alt={t('nav.logoAlt')} width="40" height="40" densities={[1, 2]} />
+    <span>{t('nav.brand')}</span>
+  </a>
+
+  <nav id="primary-nav" aria-label="Main">
+    <a href="#game-info">{t('nav.game')}</a>
+    <a href="#trailer">{t('nav.trailers')}</a>
+    <a href="#community">{t('nav.community')}</a>
+    <a href="#team">{t('nav.team')}</a>
+    <a href="#contacts">{t('nav.contact')}</a>
+    <a class="nav-steam-cta" href={LINKS.steam} target="_blank" rel="noopener">
+      <SocialIcon name="steam" class="nav-icon" />
+      <span>{t('nav.playOnSteam')}</span>
+    </a>
+    <a class="nav-discord" href={LINKS.discord} target="_blank" rel="noopener" aria-label="Discord">
+      <SocialIcon name="discord" class="nav-icon" />
+    </a>
+    <LangSwitcher locale={locale} />
+  </nav>
+
+  <button class="menu-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label={t('nav.menuToggle')}>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</header>

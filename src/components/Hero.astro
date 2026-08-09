@@ -1,0 +1,32 @@
+---
+import { LINKS, useTranslations, type Locale } from '../i18n';
+import SocialIcon from './SocialIcon.astro';
+import heroShot from '../assets/screenshots/ImmagineProvaAlienWorld.png';
+import { getImage } from 'astro:assets';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+// Cinematic backdrop (used by themes that opt in via CSS; exposed as a custom property)
+const heroBg = await getImage({ src: heroShot, width: 1920, format: 'webp', quality: 60 });
+---
+<section class="hero" id="LandingTitle" style={`--hero-image: url('${heroBg.src}')`}>
+  <div class="hero-backdrop" aria-hidden="true"></div>
+  <div class="hero-scene" aria-hidden="true">
+    <span class="hero-motif"></span>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-logo" data-text={t('hero.title')}>
+      <span class="hero-logo-pre">LABYR</span><span class="hero-logo-ai">AI</span><span class="hero-logo-post">NTH</span>
+    </h1>
+    <p class="hero-subtitle">{t('hero.subtitle')}</p>
+    <div class="hero-actions">
+      <a class="cta-primary" href={LINKS.steam} target="_blank" rel="noopener">
+        <SocialIcon name="steam" class="cta-icon" />
+        <span>{t('hero.playCta')}</span>
+      </a>
+      <a class="cta-ghost" href="#game-info">{t('hero.scrollCta')}</a>
+    </div>
+  </div>
+</section>

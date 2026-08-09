@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import GameInfo from './GameInfo.astro';
+import Trailers from './Trailers.astro';
+import Community from './Community.astro';
+import Team from './Team.astro';
+import Contact from './Contact.astro';
+import { useTranslations, type Locale } from '../i18n';
+
+interface Props { theme: string; locale?: Locale; noindex?: boolean }
+const { theme, locale = 'en', noindex = false } = Astro.props;
+const t = useTranslations(locale);
+---
+<Base theme={theme} title={t('meta.title')} description={t('meta.description')} locale={locale} noindex={noindex}>
+  <div class="bg-scene" aria-hidden="true"></div>
+  <Header locale={locale} />
+  <main>
+    <Hero locale={locale} />
+    <GameInfo locale={locale} />
+    <Trailers locale={locale} />
+    <Community locale={locale} />
+    <Team locale={locale} />
+    <Contact locale={locale} />
+  </main>
+  <script src="../scripts/site.js"></script>
+  <script src="../scripts/carousels.js"></script>
+  <script src="../scripts/lite-embed.js"></script>
+</Base>

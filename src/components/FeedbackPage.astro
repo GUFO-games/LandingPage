@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { FEEDBACK_FORMS, useTranslations, type Locale } from '../i18n';
+
+interface Props { theme: string; locale?: Locale; homeHref?: string }
+const { theme, locale = 'en', homeHref = import.meta.env.BASE_URL } = Astro.props;
+const t = useTranslations(locale);
+
+// All four form cards render for every locale (contract). Order puts the visitor's language first.
+const order = ['it', 'en', 'es', 'pt'];
+const sorted = [...order].sort((a, b) => (a === locale ? -1 : b === locale ? 1 : 0));
+---
+<Base theme={theme} title={t('feedback.meta.title')} description={t('feedback.meta.description')} locale={locale} noindex={true}>
+  <div class="bg-scene" aria-hidden="true"></div>
+  <header class="feedback-header">
+    <div class="feedback-logo" data-text={t('feedback.logo')}>Labyr<span class="hero-logo-ai">AI</span>nth</div>
+    <div class="feedback-subtitle">{t('feedback.subtitle')}</div>
+    <a href={homeHref} class="cta-primary feedback-home">{t('feedback.return')}</a>
+  </header>
+
+  <main class="feedback-container">
+    <section class="feedback-intro scroll-fade">
+      <h1>{t('feedback.heading')}</h1>
+      <p>{t('feedback.intro')}</p>
+    </section>
+
+    <div class="forms-grid">
+      {sorted.map((code) => {
+        const form = FEEDBACK_FORMS[code];
+        return (
+          <div class={`form-card scroll-fade ${code === locale ? 'is-current' : ''}`}>
+            <h3>{form.label}</h3>
+            <a href={form.url} class="form-button" target="_blank" rel="noopener">{form.cta}</a>
+          </div>
+        );
+      })}
+    </div>
+
+    <div class="feedback-warning scroll-fade">
+      <h3>{t('feedback.warning.title')}</h3>
+      <p>{t('feedback.warning.p1')}</p>
+      <p>{t('feedback.warning.p2')}</p>
+      <p>{t('feedback.warning.p3')}</p>
+    </div>
+  </main>
+  <script src="../scripts/site.js"></script>
+</Base>

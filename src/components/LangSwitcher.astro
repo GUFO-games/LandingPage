@@ -1,0 +1,47 @@
+---
+import { LOCALES, LOCALE_META, type Locale } from '../i18n';
+import { useTranslations } from '../i18n';
+
+interface Props { locale: Locale; enabledLocales?: Locale[] }
+const { locale, enabledLocales = ['en'] } = Astro.props;
+const t = useTranslations(locale);
+const current = LOCALE_META[locale];
+
+// Flag SVGs bundled from HatScripts/circle-flags (MIT).
+const flagFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/flags/*.svg', { eager: true });
+const flagOf = (code: string) => flagFiles[`../assets/flags/${code}.svg`]?.default.src ?? '';
+---
+<div class="lang-switcher" data-lang-switcher>
+  <button
+    type="button"
+    class="lang-btn"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-label={t('lang.label')}
+  >
+    <img src={flagOf(current.flag)} alt="" width="20" height="20" loading="lazy" />
+    <span class="lang-code">{locale.toUpperCase()}</span>
+    <svg class="lang-caret" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <ul class="lang-menu" role="listbox" aria-label={t('lang.label')} hidden>
+    {LOCALES.map((code) => {
+      const m = LOCALE_META[code];
+      const enabled = enabledLocales.includes(code);
+      return (
+        <li>
+          {enabled ? (
+            <a class="lang-item" role="option" aria-selected={code === locale} data-locale={code} href="#">
+              <img src={flagOf(m.flag)} alt="" width="20" height="20" loading="lazy" />
+              <span>{m.native}</span>
+            </a>
+          ) : (
+            <span class="lang-item is-disabled" role="option" aria-selected="false" aria-disabled="true" title={t('lang.comingSoon')}>
+              <img src={flagOf(m.flag)} alt="" width="20" height="20" loading="lazy" />
+              <span>{m.native}</span>
+            </span>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</div>

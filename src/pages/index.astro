@@ -1,0 +1,72 @@
+---
+// DEMO PHASE ROOT = variant launcher hub (test-case standard: name, thesis, palette swatches).
+// At winner promotion this file becomes the production landing page and /demo is deleted.
+import Base from '../layouts/Base.astro';
+
+const base = import.meta.env.BASE_URL;
+const variants = [
+  {
+    id: 'v1',
+    name: 'NEON ARCADE',
+    thesis: 'The current site turned up to 11: a playable-feeling synthwave cabinet with loud neon and score-attack energy.',
+    swatches: ['#0a0614', '#00f0ff', '#ff2975', '#8b5cf6'],
+    font: "'Space Mono', monospace",
+  },
+  {
+    id: 'v2',
+    name: 'MISSION CONTROL',
+    thesis: "A starship's tactical console: chamfered HUD panels, radar-sweep hero, magenta reserved for the one action that matters.",
+    swatches: ['#070510', '#33e1ff', '#ff0066', '#663399'],
+    font: "'Orbitron', sans-serif",
+  },
+  {
+    id: 'v3',
+    name: 'COSMIC DESCENT',
+    thesis: 'AAA-store-page cinematic: full-bleed stills, UV biolume glow, constellation owl-ship, deep space voids.',
+    swatches: ['#05030a', '#a78bfa', '#22d3ee', '#3b0f5e'],
+    font: "'Chakra Petch', sans-serif",
+  },
+];
+---
+<Base theme="hub" title="LABYRAINTH redesign — variant hub" description="Internal review hub for the G.U.F.O. Games landing page redesign variants." noindex={true}>
+  <main class="hub">
+    <header class="hub-head">
+      <img src={`${base}gufo-logo.png`} alt="G.U.F.O. games logo" width="64" height="64" />
+      <h1>LABYRAINTH — redesign variants</h1>
+      <p>Same content contract, three skins. Open each variant and its hidden feedback page, then pick the winner.</p>
+    </header>
+    <div class="hub-grid">
+      {variants.map((v) => (
+        <article class="hub-card" style={`font-family:${v.font}`}>
+          <div class="hub-swatches" aria-hidden="true">
+            {v.swatches.map((c) => <span style={`background:${c}`}></span>)}
+          </div>
+          <h2>{v.name}</h2>
+          <p>{v.thesis}</p>
+          <div class="hub-actions">
+            <a class="hub-open" href={`${base}demo/${v.id}/`}>Open landing</a>
+            <a class="hub-open hub-open-alt" href={`${base}demo/${v.id}/feedback/`}>Feedback page</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <style>
+    .hub { min-height: 100dvh; background: #08050f; color: #eae6ff; padding: 3rem 1.5rem 4rem; font-family: system-ui, sans-serif; }
+    .hub-head { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+    .hub-head img { margin: 0 auto 1rem; }
+    .hub-head h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); letter-spacing: 0.04em; margin: 0 0 0.6rem; }
+    .hub-head p { color: #b8aee6; margin: 0; }
+    .hub-grid { display: grid; gap: 1.5rem; max-width: 1080px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .hub-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(139,92,246,0.3); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.9rem; transition: transform .2s ease, border-color .2s ease; }
+    .hub-card:hover { transform: translateY(-4px); border-color: rgba(0,240,255,0.5); }
+    .hub-swatches { display: flex; gap: 6px; }
+    .hub-swatches span { width: 26px; height: 26px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); }
+    .hub-card h2 { margin: 0; font-size: 1.25rem; letter-spacing: 0.08em; }
+    .hub-card p { margin: 0; color: #b8aee6; font-size: 0.92rem; line-height: 1.6; flex: 1; font-family: system-ui, sans-serif; }
+    .hub-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .hub-open { padding: 0.6rem 1.1rem; border-radius: 8px; text-decoration: none; color: #08050f; background: #00f0ff; font-size: 0.85rem; font-family: system-ui, sans-serif; font-weight: 600; }
+    .hub-open-alt { background: transparent; color: #00f0ff; border: 1px solid rgba(0,240,255,0.5); }
+  </style>
+</Base>

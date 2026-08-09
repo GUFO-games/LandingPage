@@ -1,0 +1,6 @@
+---
+import LandingPage from '../../../components/LandingPage.astro';
+// Theme CSS is imported AFTER the component tree so theme rules cascade after global.css.
+import '../../../styles/themes/cosmic-descent.css';
+---
+<LandingPage theme="cosmic-descent" noindex={true} />
