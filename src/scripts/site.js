@@ -136,7 +136,9 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
     menu.hidden = false;
     btn.setAttribute('aria-expanded', 'true');
     const active = options.find((o) => o.getAttribute('aria-selected') === 'true') || options[0];
-    active?.focus();
+    // preventScroll: focusing a menu row otherwise drags the whole page, and with
+    // scroll-behavior:smooth that reads as the page scrolling on its own.
+    active?.focus({ preventScroll: true });
   };
 
   const go = (option) => {
@@ -144,8 +146,9 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
     const href = option.dataset.href;
     if (!href) return;
     try { localStorage.setItem('gufo-lang', locale); } catch {}
-    // Section hash survives the switch — the six anchor ids are a frozen contract.
-    window.location.href = href + window.location.hash;
+    // Client call: land at the top of the translated page. Carrying the section
+    // hash made the new page animate-scroll on load, which read as a bug.
+    window.location.href = href;
   };
 
   btn.addEventListener('click', () => (menu.hidden ? open() : close()));
@@ -154,10 +157,11 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
     option.addEventListener('click', () => go(option));
     option.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(option); }
-      if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(); }
-      if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(); }
-      if (e.key === 'Home') { e.preventDefault(); options[0].focus(); }
-      if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(); }
+      const opts = { preventScroll: true };
+      if (e.key === 'ArrowDown') { e.preventDefault(); options[(i + 1) % options.length].focus(opts); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); options[(i - 1 + options.length) % options.length].focus(opts); }
+      if (e.key === 'Home') { e.preventDefault(); options[0].focus(opts); }
+      if (e.key === 'End') { e.preventDefault(); options[options.length - 1].focus(opts); }
     });
   });
 

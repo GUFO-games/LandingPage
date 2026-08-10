@@ -1,5 +1,3 @@
-@import 'tailwindcss';
-
 @import '@fontsource/space-grotesk/500.css';
 @import '@fontsource/space-grotesk/700.css';
 @import '@fontsource/inter/400.css';
@@ -58,6 +56,23 @@
   --font-body: 'Inter', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Microsoft YaHei', 'PingFang SC', sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+
+/* ============================================================
+   Reset — replaces Tailwind's preflight. The project uses no utility
+   classes, so shipping the framework only cost render-blocking CSS.
+   ============================================================ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3, h4 { font-size: inherit; font-weight: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; background: none; border: 0; }
+button { cursor: pointer; }
+svg { display: block; }
+:where(a) { color: inherit; text-decoration: none; }
 
 /* ============================================================
    Base
@@ -589,7 +604,9 @@ button:focus-visible,
   transition: all 0.5s var(--ease);
 }
 .theater-thumb:hover { opacity: 1; border-color: var(--accent-1); box-shadow: 0 0 12px rgba(167, 139, 250, 0.45); }
-.theater-thumb .thumb-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
+/* display:block is load-bearing — as an inline span the width/height are
+   ignored, the box collapses to 0 and the poster never paints. */
+.theater-thumb .thumb-img { display: block; width: 100%; height: 100%; background-size: cover; background-position: center; }
 .theater-prev { grid-area: prev; }
 .theater-next { grid-area: next; }
 .theater-stage-wrap { grid-area: stage; min-width: 0; }
@@ -834,11 +851,15 @@ button:focus-visible,
   border: 1px dashed rgba(167, 139, 250, 0.1);
   animation: cd-ring 46s linear infinite reverse;
 }
+/* The static rings stay atmospheric; the sweeping arc carries the motion, so it
+   is the one element allowed to be clearly visible. */
 .ring-4 {
   inset: 36%;
-  border: 1px solid rgba(34, 211, 238, 0.08);
-  border-top-color: rgba(34, 211, 238, 0.42);
-  animation: cd-ring 22s linear infinite;
+  border: 1px solid rgba(34, 211, 238, 0.07);
+  border-top-color: rgba(34, 211, 238, 0.85);
+  border-right-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.12);
+  animation: cd-ring 14s linear infinite;
 }
 .ring-5 { inset: 48%; border: 1px solid rgba(167, 139, 250, 0.14); }
 .contact-body { position: relative; z-index: 1; }
