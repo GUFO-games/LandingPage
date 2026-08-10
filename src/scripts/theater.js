@@ -10,6 +10,8 @@
   const ids = (root.dataset.ids || '').split(',').filter(Boolean);
   if (!ids.length) return;
   const total = ids.length;
+  // Self-hosted poster frames, emitted by the build alongside the video ids.
+  const posters = (root.dataset.posters || '').split(',').filter(Boolean);
 
   const stage = root.querySelector('[data-stage]');
   const prevBtn = root.querySelector('[data-prev]');
@@ -26,8 +28,8 @@
   };
 
   const pad = (n) => String(n).padStart(2, '0');
-  const thumbUrl = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
   const at = (i) => (i + total) % total;
+  const thumbUrl = (i) => posters[i] || `https://i.ytimg.com/vi/${ids[i]}/hqdefault.jpg`;
 
   let index = 0;
   let playing = false;
@@ -52,7 +54,7 @@
     const img = document.createElement('span');
     img.className = 'thumb-img';
     img.setAttribute('aria-hidden', 'true');
-    img.style.backgroundImage = `url('${thumbUrl(ids[index])}')`;
+    img.style.backgroundImage = `url('${thumbUrl(index)}')`;
 
     const vignette = document.createElement('span');
     vignette.className = 'stage-vignette';
@@ -72,8 +74,8 @@
 
   function render() {
     renderStage();
-    prevThumb.style.backgroundImage = `url('${thumbUrl(ids[at(index - 1)])}')`;
-    nextThumb.style.backgroundImage = `url('${thumbUrl(ids[at(index + 1)])}')`;
+    prevThumb.style.backgroundImage = `url('${thumbUrl(at(index - 1))}')`;
+    nextThumb.style.backgroundImage = `url('${thumbUrl(at(index + 1))}')`;
     prevBtn.setAttribute('aria-label', `${L.prev}, ${at(index - 1) + 1} / ${total}`);
     nextBtn.setAttribute('aria-label', `${L.next}, ${at(index + 1) + 1} / ${total}`);
     counter.textContent = `${pad(index + 1)} / ${pad(total)}`;

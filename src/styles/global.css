@@ -495,7 +495,9 @@ button:focus-visible,
 .section-inner { max-width: 1180px; margin: 0 auto; }
 .section-head { margin-bottom: clamp(3rem, 7vh, 5rem); }
 .section-head .eyebrow { margin-bottom: 20px; }
-.section h2 {
+/* .team-section is not .section — it needs the same H2 scale as every other block */
+.section h2,
+.team-section h2 {
   margin: 0;
   font: 700 clamp(2rem, 5.5vw, 3.9rem) / 1.04 var(--font-display);
   letter-spacing: 0.02em;
@@ -645,12 +647,16 @@ button:focus-visible,
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 300px;
+  min-height: 340px;
   padding: clamp(2rem, 4vw, 3rem);
+  /* The badge is absolutely positioned at the top; reserve its band so a tall
+     body (or a long translation) can never rise into it. */
+  padding-top: calc(clamp(2rem, 4vw, 3rem) + 64px);
   border-radius: var(--radius);
   overflow: hidden;
   transition: all 0.5s var(--ease);
 }
+.tile-body { display: flex; flex-direction: column; }
 .tile h3 {
   margin: 0 0 12px;
   font: 700 clamp(1.6rem, 3vw, 2.4rem) / 1.1 var(--font-display);
@@ -812,18 +818,30 @@ button:focus-visible,
   position: absolute;
   left: 50%;
   top: 50%;
+  z-index: 0; /* strictly behind the copy */
   transform: translate(-50%, -50%);
   width: min(760px, 120%);
   aspect-ratio: 1;
   pointer-events: none;
 }
 .airlock span { position: absolute; border-radius: 50%; }
-.ring-1 { inset: 0; border: 1px solid rgba(167, 139, 250, 0.1); }
-.ring-2 { inset: 12%; border: 1px solid rgba(167, 139, 250, 0.14); }
-.ring-3 { inset: 24%; border: 1px dashed rgba(167, 139, 250, 0.2); }
-.ring-4 { inset: 36%; border: 1px solid rgba(34, 211, 238, 0.16); border-top-color: rgba(34, 211, 238, 0.5); animation: cd-ring 34s linear infinite; }
-.ring-5 { inset: 48%; border: 1px solid rgba(167, 139, 250, 0.26); box-shadow: var(--glow-uv); }
-.contact-body { position: relative; }
+/* Dimmed from the handoff values: at this size the rings read as foreground
+   scaffolding rather than atmosphere. */
+.ring-1 { inset: 0; border: 1px solid rgba(167, 139, 250, 0.055); }
+.ring-2 { inset: 12%; border: 1px solid rgba(167, 139, 250, 0.075); }
+.ring-3 {
+  inset: 24%;
+  border: 1px dashed rgba(167, 139, 250, 0.1);
+  animation: cd-ring 46s linear infinite reverse;
+}
+.ring-4 {
+  inset: 36%;
+  border: 1px solid rgba(34, 211, 238, 0.08);
+  border-top-color: rgba(34, 211, 238, 0.42);
+  animation: cd-ring 22s linear infinite;
+}
+.ring-5 { inset: 48%; border: 1px solid rgba(167, 139, 250, 0.14); }
+.contact-body { position: relative; z-index: 1; }
 .contact-body .eyebrow { margin-bottom: 24px; }
 .contact-body h2 {
   margin: 0 0 24px;
@@ -938,7 +956,7 @@ button:focus-visible,
 }
 .fb-return:hover { background: var(--accent-1); color: var(--ink-on-ai); box-shadow: var(--glow-uv); }
 
-.fb-main { position: relative; max-width: 980px; margin: 0 auto; padding: clamp(4rem, 10vh, 8rem) var(--pad-x) clamp(5rem, 12vh, 9rem); }
+.fb-main { position: relative; max-width: 1180px; margin: 0 auto; padding: clamp(4rem, 10vh, 8rem) var(--pad-x) clamp(5rem, 12vh, 9rem); }
 .fb-head { text-align: center; margin-bottom: clamp(3rem, 7vh, 4.5rem); }
 .fb-head .eyebrow { margin-bottom: 22px; }
 .fb-head h1 {
@@ -949,7 +967,11 @@ button:focus-visible,
   text-wrap: balance;
 }
 .fb-head p { margin: 0 auto; max-width: 65ch; color: var(--text-muted); text-wrap: pretty; }
-.fb-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+/* Explicit tracks, not auto-fit: the four language cards must land 4-up on
+   desktop, 2-up on tablet and 1-up on mobile — never 3 + 1. */
+.fb-cards { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 620px) { .fb-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .fb-cards { grid-template-columns: repeat(4, 1fr); } }
 .fb-card {
   display: flex;
   flex-direction: column;
@@ -1057,6 +1079,7 @@ button:focus-visible,
   html { scroll-behavior: auto; }
   .spore,
   .hero-backdrop img,
+  .ring-3,
   .ring-4,
   .fb-warn-icon { animation: none !important; }
   .hero-backdrop img { transform: scale(1.06); }

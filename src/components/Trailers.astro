@@ -1,12 +1,20 @@
 ---
 import { VIDEO_IDS, useTranslations, type Locale } from '../i18n';
+import { getImage } from 'astro:assets';
+import p0 from '../assets/posters/EXqUSbjh_9k.jpg';
+import p1 from '../assets/posters/yNO7C4TddEk.jpg';
+import p2 from '../assets/posters/TF1v-1nuZSI.jpg';
 
 interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
+// Posters are self-hosted: no request to i.ytimg.com before the visitor plays.
+const posters = await Promise.all(
+  [p0, p1, p2].map((src) => getImage({ src, width: 960, format: 'webp', quality: 70 }))
+);
+const posterUrls = posters.map((p) => p.src);
 const total = VIDEO_IDS.length;
-const thumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 ---
 <section class="theater-section" id="trailer">
   <div class="theater-inner">
@@ -22,19 +30,20 @@ const thumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
       aria-label={t('trailers.groupLabel')}
       data-theater
       data-ids={VIDEO_IDS.join(',')}
+      data-posters={posterUrls.join(',')}
       data-prev-label={t('trailers.prevLabel')}
       data-next-label={t('trailers.nextLabel')}
       data-play-label={t('trailers.playLabel')}
       data-iframe-title={t('trailers.iframeTitle')}
     >
       <button type="button" class="theater-thumb theater-prev" data-prev aria-label={`${t('trailers.prevLabel')}, ${total} / ${total}`}>
-        <span class="thumb-img" aria-hidden="true" style={`background-image:url('${thumb(VIDEO_IDS[total - 1])}')`}></span>
+        <span class="thumb-img" aria-hidden="true" style={`background-image:url('${posterUrls[total - 1]}')`}></span>
       </button>
 
       <div class="theater-stage-wrap">
         <div class="theater-stage" data-stage>
           <button type="button" class="stage-poster" data-play aria-label={`${t('trailers.playLabel')} 1 / ${total}`}>
-            <span class="thumb-img" aria-hidden="true" style={`background-image:url('${thumb(VIDEO_IDS[0])}')`}></span>
+            <span class="thumb-img" aria-hidden="true" style={`background-image:url('${posterUrls[0]}')`}></span>
             <span class="stage-vignette" aria-hidden="true"></span>
             <span class="play-ring" aria-hidden="true"><span class="play-tri"></span></span>
           </button>
@@ -47,7 +56,7 @@ const thumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
       </div>
 
       <button type="button" class="theater-thumb theater-next" data-next aria-label={`${t('trailers.nextLabel')}, 2 / ${total}`}>
-        <span class="thumb-img" aria-hidden="true" style={`background-image:url('${thumb(VIDEO_IDS[1])}')`}></span>
+        <span class="thumb-img" aria-hidden="true" style={`background-image:url('${posterUrls[1]}')`}></span>
       </button>
     </div>
   </div>

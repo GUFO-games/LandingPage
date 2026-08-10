@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - Fuggi dal labirinto",
   "meta.description": "Landing page di G.U.F.O. games dedicata a LABYRAINTH, un FPS sci-fi in cui i giocatori si addentrano in labirinti alieni letali.",
-
   "skip.link": "Vai al contenuto",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "Principale",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "Chiudi menu",
   "nav.logoAlt": "Logo G.U.F.O. games",
   "top.backToTop": "Torna su",
-
   "lang.label": "Lingua",
   "lang.select": "Seleziona lingua",
   "lang.suggestText": "Questo sito è disponibile in italiano.",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "Resta in italiano",
   "lang.suggestDismiss": "Chiudi",
   "lang.suggestRegion": "Suggerimento lingua",
-
   "hero.eyebrow": "Steam Accesso Anticipato · Boomer Shooter · Roguelite",
   "hero.subtitle": "Entra nel labirinto alieno dove ogni corridoio può essere l'ultimo. Attraversa dedali letali, affronta minacce extraterrestri e corri contro il tempo per fuggire. In LABYRAINTH sopravvivere è un'arte.",
   "hero.playCta": "Gioca su Steam",
   "hero.scrollCta": "Entra nel labirinto",
-
-  "game.eyebrow": "Discesa 01 — 06",
+  "game.eyebrow": "Discesa 01 - 06",
   "game.heading": "L'esperienza definitiva nel labirinto",
   "game.intro": "LABYRAINTH è un FPS sci-fi adrenalinico che ti sfida ad attraversare labirinti alieni generati proceduralmente. Ogni partita è unica, ogni angolo nasconde un pericolo, ogni secondo conta.",
   "game.f1.title": "Sistema di combattimento",
@@ -55,7 +51,6 @@
   "game.f6.title": "Generazione procedurale",
   "game.f6.body": "Nessuna run è uguale all'altra. Rigiocabilità infinita, con labirinti generati casualmente a ogni partita.",
   "game.f6.alt": "Generazione procedurale in LABYRAINTH: la pianta di un labirinto appena generato vista dalla mappa",
-
   "trailers.eyebrow": "Sala proiezioni",
   "trailers.heading": "Trailer e video",
   "trailers.groupLabel": "Carosello dei trailer",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "Riproduci trailer",
   "trailers.iframeTitle": "Trailer di LABYRAINTH",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "Unisciti alla discesa",
   "community.heading": "Unisciti alla community",
   "community.sub": "Entra in contatto con gli altri corridori del labirinto e resta aggiornato sugli ultimi sviluppi",
@@ -76,7 +70,6 @@
   "community.discord.title": "Entra su Discord",
   "community.discord.body": "Condividi le tue creazioni, trova avversari e scopri gli aggiornamenti futuri prima di tutti.",
   "community.discord.cta": "Entra su Discord",
-
   "team.eyebrow": "Costellazione crew · 14",
   "team.heading": "Gli architetti del labirinto",
   "team.sub": "Il team che ha dato vita al mondo alieno di LABYRAINTH",
@@ -109,14 +102,12 @@
   "team.m14.role": "Community e Social Media Manager",
   "team.m14.bio": "Se hai scoperto questo gioco, probabilmente è merito di Emiliano e del suo ottimo lavoro nel far conoscere LABYRAINTH a più persone possibile.",
   "team.avatarNote": "Sfere segnaposto — in attesa del set di avatar della crew di gufi",
-
   "contact.eyebrow": "Portello di fuga",
   "contact.heading": "Contatta la sala di controllo",
   "contact.line1": "Hai domande su LABYRAINTH? Ti serve supporto tecnico? Vuoi collaborare?",
   "contact.line2": "Il nostro team è pronto ad aiutarti nella tua corsa dentro il labirinto.",
-  "footer.status": "Steam Accesso Anticipato · Presentato allo Steam Cyberpunk Fest",
+  "footer.status": "Steam Accesso Anticipato",
   "footer.legal": "LABYRAINTH, LabyrAInth e G.U.F.O. Games sono nomi di proprietà di G.U.F.O. Games. Tutte le illustrazioni, i loghi, gli screenshot, i trailer e i contenuti video sono di proprietà esclusiva e sono tutelati dalle leggi vigenti in materia di diritto d'autore e marchi. Tutti i diritti riservati. I nomi e i loghi delle piattaforme di terze parti sono marchi dei rispettivi proprietari.",
-
   "feedback.meta.title": "LABYRAINTH - Centro feedback",
   "feedback.meta.description": "Centro feedback di LABYRAINTH. Condividi le tue impressioni, segnala bug e proponi nuove funzionalità per migliorare l'esperienza nel labirinto.",
   "feedback.subtitle": "Sfida di navigazione nel labirinto con l'AI",

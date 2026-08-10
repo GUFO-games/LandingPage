@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - Escape the Labyrinth",
   "meta.description": "G.U.F.O. games landing page for LABYRAINTH, a sci-fi FPS game where players navigate deadly alien mazes.",
-
   "skip.link": "Skip to content",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "Main",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "Close menu",
   "nav.logoAlt": "G.U.F.O. games logo",
   "top.backToTop": "Back to top",
-
   "lang.label": "Language",
   "lang.select": "Select language",
   "lang.suggestText": "This site is available in English.",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "Stay in English",
   "lang.suggestDismiss": "Dismiss",
   "lang.suggestRegion": "Language suggestion",
-
   "hero.eyebrow": "Steam Early Access · Boomer Shooter · Roguelite",
   "hero.subtitle": "Enter the alien labyrinth where every corridor could be your last. Navigate deadly mazes, battle extraterrestrial threats, and race against time to escape. In LABYRAINTH, survival is an art form.",
   "hero.playCta": "Play on Steam",
   "hero.scrollCta": "Enter the Maze",
-
-  "game.eyebrow": "Descent 01 — 06",
+  "game.eyebrow": "Descent 01 - 06",
   "game.heading": "The Ultimate Maze Experience",
   "game.intro": "LABYRAINTH is a heart-pounding sci-fi FPS that challenges you to navigate through procedurally generated alien labyrinths. Every playthrough is unique, every corner holds danger, and every second counts.",
   "game.f1.title": "Combat System",
@@ -55,7 +51,6 @@
   "game.f6.title": "Procedural Generation",
   "game.f6.body": "No two runs are the same. Experience infinite replayability with randomly generated maze layouts.",
   "game.f6.alt": "LABYRAINTH procedural generation: a freshly generated maze layout seen from the map overlay",
-
   "trailers.eyebrow": "Projection deck",
   "trailers.heading": "Trailers & Videos",
   "trailers.groupLabel": "Trailer carousel",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "Play trailer",
   "trailers.iframeTitle": "LABYRAINTH trailer",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "Join the descent",
   "community.heading": "Join the Community",
   "community.sub": "Connect with fellow maze runners and stay updated on the latest developments",
@@ -76,7 +70,6 @@
   "community.discord.title": "Join Discord",
   "community.discord.body": "Share your creations, Find competitors, Know before the other the future updates.",
   "community.discord.cta": "Join Discord",
-
   "team.eyebrow": "Crew constellation · 14",
   "team.heading": "The Architects of the Maze",
   "team.sub": "Meet the dedicated team behind LABYRAINTH's immersive alien world",
@@ -109,14 +102,12 @@
   "team.m14.role": "Community and Social Media Manager",
   "team.m14.bio": "If you found this game is probably thanks to Emiliano, and his great work in making sure many people know about LABYRAINTH.",
   "team.avatarNote": "Orb placeholders — awaiting owl-crew avatar set",
-
   "contact.eyebrow": "Escape hatch",
   "contact.heading": "Contact Mission Control",
   "contact.line1": "Have questions about LABYRAINTH? Need technical support? Want to collaborate?",
   "contact.line2": "Our team is ready to assist you in your maze-running journey.",
-  "footer.status": "Steam Early Access · Shown at Steam Cyberpunk Fest",
+  "footer.status": "Steam Early Access",
   "footer.legal": "LABYRAINTH, LabyrAInth and G.U.F.O. Games are proprietary names of G.U.F.O. Games. All artwork, logos, screenshots, trailers and video content are proprietary and protected under applicable copyright and trademark law. All rights reserved. Third-party platform names and logos are trademarks of their respective owners.",
-
   "feedback.meta.title": "LABYRAINTH - Feedback Center",
   "feedback.meta.description": "Feedback Center for LABYRAINTH. Share your thoughts, report bugs, and suggest features to improve the maze-running experience.",
   "feedback.subtitle": "AI Maze Navigation Challenge",

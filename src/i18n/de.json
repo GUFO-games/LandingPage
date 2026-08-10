@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - Entkomme dem Labyrinth",
   "meta.description": "G.U.F.O. games Landingpage für LABYRAINTH, ein Sci-Fi-FPS, in dem du dich durch tödliche Alien-Labyrinthe kämpfst.",
-
   "skip.link": "Zum Inhalt springen",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "Hauptnavigation",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "Menü schließen",
   "nav.logoAlt": "G.U.F.O. games Logo",
   "top.backToTop": "Nach oben",
-
   "lang.label": "Sprache",
   "lang.select": "Sprache wählen",
   "lang.suggestText": "Diese Seite ist auf Deutsch verfügbar.",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "Auf Deutsch bleiben",
   "lang.suggestDismiss": "Schließen",
   "lang.suggestRegion": "Sprachvorschlag",
-
   "hero.eyebrow": "Steam Early Access · Boomer Shooter · Roguelite",
   "hero.subtitle": "Betritt das Alien-Labyrinth, in dem jeder Korridor dein letzter sein kann. Schlag dich durch tödliche Irrgärten, bekämpfe außerirdische Bedrohungen und flieh, bevor die Zeit abläuft. In LABYRAINTH ist Überleben eine Kunstform.",
   "hero.playCta": "Auf Steam spielen",
   "hero.scrollCta": "Betritt das Labyrinth",
-
-  "game.eyebrow": "Abstieg 01 — 06",
+  "game.eyebrow": "Abstieg 01 - 06",
   "game.heading": "Das ultimative Labyrinth-Erlebnis",
   "game.intro": "LABYRAINTH ist ein atemloser Sci-Fi-FPS, der dich durch prozedural generierte Alien-Labyrinthe schickt. Jeder Run ist einzigartig, hinter jeder Ecke lauert Gefahr, und jede Sekunde zählt.",
   "game.f1.title": "Kampfsystem",
@@ -55,7 +51,6 @@
   "game.f6.title": "Prozedurale Generierung",
   "game.f6.body": "Kein Run gleicht dem anderen. Zufällig generierte Labyrinth-Layouts sorgen für endlosen Wiederspielwert.",
   "game.f6.alt": "LABYRAINTH prozedurale Generierung: ein frisch generiertes Labyrinth-Layout in der Kartenansicht",
-
   "trailers.eyebrow": "Projektionsdeck",
   "trailers.heading": "Trailer & Videos",
   "trailers.groupLabel": "Trailer-Karussell",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "Trailer abspielen",
   "trailers.iframeTitle": "LABYRAINTH Trailer",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "Ab in die Tiefe",
   "community.heading": "Werde Teil der Community",
   "community.sub": "Vernetz dich mit anderen Labyrinth-Läufern und bleib bei allen Neuigkeiten auf dem Laufenden",
@@ -76,7 +70,6 @@
   "community.discord.title": "Discord beitreten",
   "community.discord.body": "Zeig deine Kreationen, finde Mitstreiter und erfahre vor allen anderen von kommenden Updates.",
   "community.discord.cta": "Discord beitreten",
-
   "team.eyebrow": "Crew-Konstellation · 14",
   "team.heading": "Die Architekten des Labyrinths",
   "team.sub": "Lern das Team kennen, das hinter der Alien-Welt von LABYRAINTH steckt",
@@ -109,14 +102,12 @@
   "team.m14.role": "Community & Social Media Manager",
   "team.m14.bio": "Dass du dieses Spiel gefunden hast, liegt wahrscheinlich an Emiliano – und an seiner großartigen Arbeit dabei, LABYRAINTH bekannt zu machen.",
   "team.avatarNote": "Orb-Platzhalter – Avatar-Set der Owl-Crew folgt",
-
   "contact.eyebrow": "Notausstieg",
   "contact.heading": "Kontakt zur Mission Control",
   "contact.line1": "Fragen zu LABYRAINTH? Technische Probleme? Lust auf eine Zusammenarbeit?",
   "contact.line2": "Unser Team steht dir auf deinem Weg durchs Labyrinth zur Seite.",
-  "footer.status": "Steam Early Access · Gezeigt beim Steam Cyberpunk Fest",
+  "footer.status": "Steam Early Access",
   "footer.legal": "LABYRAINTH, LabyrAInth und G.U.F.O. Games sind geschützte Namen von G.U.F.O. Games. Sämtliche Artworks, Logos, Screenshots, Trailer und Videoinhalte sind Eigentum von G.U.F.O. Games und nach geltendem Urheber- und Markenrecht geschützt. Alle Rechte vorbehalten. Namen und Logos von Drittanbieter-Plattformen sind Marken ihrer jeweiligen Inhaber.",
-
   "feedback.meta.title": "LABYRAINTH - Feedback-Center",
   "feedback.meta.description": "Feedback-Center für LABYRAINTH. Teil uns deine Eindrücke mit, melde Bugs und schlag Features vor, um das Labyrinth-Erlebnis besser zu machen.",
   "feedback.subtitle": "KI-Labyrinth-Challenge",

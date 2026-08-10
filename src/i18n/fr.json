@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - Échappez au Labyrinthe",
   "meta.description": "Page de G.U.F.O. games consacrée à LABYRAINTH, un FPS de science-fiction où les joueurs traversent des labyrinthes extraterrestres mortels.",
-
   "skip.link": "Aller au contenu",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "Principal",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "Fermer le menu",
   "nav.logoAlt": "Logo G.U.F.O. games",
   "top.backToTop": "Retour en haut",
-
   "lang.label": "Langue",
   "lang.select": "Choisir la langue",
   "lang.suggestText": "Ce site est disponible en français.",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "Rester en français",
   "lang.suggestDismiss": "Ignorer",
   "lang.suggestRegion": "Suggestion de langue",
-
   "hero.eyebrow": "Steam Accès Anticipé · Boomer Shooter · Roguelite",
   "hero.subtitle": "Entrez dans le labyrinthe extraterrestre où chaque couloir peut être le dernier. Traversez des dédales mortels, affrontez des menaces venues d'ailleurs et courez contre la montre pour vous échapper. Dans LABYRAINTH, survivre est un art.",
   "hero.playCta": "Jouer sur Steam",
   "hero.scrollCta": "Entrer dans le dédale",
-
-  "game.eyebrow": "Descente 01 — 06",
+  "game.eyebrow": "Descente 01 - 06",
   "game.heading": "L'Expérience Ultime du Labyrinthe",
   "game.intro": "LABYRAINTH est un FPS de science-fiction à couper le souffle qui vous met au défi de traverser des labyrinthes extraterrestres générés procéduralement. Chaque partie est unique, chaque virage cache un danger, chaque seconde compte.",
   "game.f1.title": "Système de combat",
@@ -55,7 +51,6 @@
   "game.f6.title": "Génération procédurale",
   "game.f6.body": "Aucune run ne ressemble à la précédente. Une rejouabilité infinie grâce à des plans de labyrinthe générés aléatoirement.",
   "game.f6.alt": "Génération procédurale de LABYRAINTH : un plan de labyrinthe fraîchement généré, vu depuis la carte",
-
   "trailers.eyebrow": "Salle de projection",
   "trailers.heading": "Trailers et vidéos",
   "trailers.groupLabel": "Carrousel de trailers",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "Lire le trailer",
   "trailers.iframeTitle": "Trailer de LABYRAINTH",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "Rejoignez la descente",
   "community.heading": "Rejoignez la communauté",
   "community.sub": "Échangez avec les autres coureurs de labyrinthe et suivez toutes les nouveautés",
@@ -76,7 +70,6 @@
   "community.discord.title": "Rejoindre Discord",
   "community.discord.body": "Partagez vos créations, trouvez des adversaires et découvrez les prochaines mises à jour avant tout le monde.",
   "community.discord.cta": "Rejoindre Discord",
-
   "team.eyebrow": "Constellation d'équipage · 14",
   "team.heading": "Les Architectes du Labyrinthe",
   "team.sub": "Découvrez l'équipe passionnée derrière le monde extraterrestre immersif de LABYRAINTH",
@@ -109,14 +102,12 @@
   "team.m14.role": "Responsable communauté et réseaux sociaux",
   "team.m14.bio": "Si vous avez découvert ce jeu, c'est sans doute grâce à Emiliano et à son super travail pour faire connaître LABYRAINTH.",
   "team.avatarNote": "Orbes provisoires — en attente des avatars de l'équipage hibou",
-
   "contact.eyebrow": "Sas de secours",
   "contact.heading": "Contactez le Contrôle de Mission",
   "contact.line1": "Des questions sur LABYRAINTH ? Besoin d'assistance technique ? Envie de collaborer ?",
   "contact.line2": "Notre équipe est prête à vous accompagner dans votre traversée du labyrinthe.",
-  "footer.status": "Steam Accès Anticipé · Présenté au Steam Cyberpunk Fest",
+  "footer.status": "Steam Accès Anticipé",
   "footer.legal": "LABYRAINTH, LabyrAInth et G.U.F.O. Games sont des noms propriétaires de G.U.F.O. Games. Les illustrations, logos, captures d'écran, trailers et contenus vidéo sont la propriété exclusive de leur détenteur et sont protégés par les lois applicables en matière de droit d'auteur et de marques. Tous droits réservés. Les noms et logos des plateformes tierces sont des marques de leurs propriétaires respectifs.",
-
   "feedback.meta.title": "LABYRAINTH - Centre de Feedback",
   "feedback.meta.description": "Centre de feedback de LABYRAINTH. Partagez vos impressions, signalez des bugs et proposez des idées pour améliorer l'expérience dans le labyrinthe.",
   "feedback.subtitle": "Défi de navigation en labyrinthe par IA",

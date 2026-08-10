@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - 逃出迷宫",
   "meta.description": "G.U.F.O. games 旗下科幻 FPS《LABYRAINTH》官方页面：在致命的异星迷宫中杀出一条生路。",
-
   "skip.link": "跳至正文",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "主导航",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "关闭菜单",
   "nav.logoAlt": "G.U.F.O. games 徽标",
   "top.backToTop": "回到顶部",
-
   "lang.label": "语言",
   "lang.select": "选择语言",
   "lang.suggestText": "本站提供简体中文版本。",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "继续使用中文",
   "lang.suggestDismiss": "关闭",
   "lang.suggestRegion": "语言建议",
-
   "hero.eyebrow": "Steam 抢先体验 · 老派射击 · Roguelite",
   "hero.subtitle": "踏进异星迷宫，每一条走廊都可能是终点。穿过致命迷阵，击溃外星威胁，和时间赛跑杀出重围。在《LABYRAINTH》里，活下来本身就是一门艺术。",
   "hero.playCta": "去 Steam 玩",
   "hero.scrollCta": "进入迷宫",
-
-  "game.eyebrow": "深入 01 — 06",
+  "game.eyebrow": "深入 01 - 06",
   "game.heading": "终极迷宫体验",
   "game.intro": "《LABYRAINTH》是一款让人心跳加速的科幻 FPS，带你闯进程序生成的异星迷宫。每一局都独一无二，每个拐角都藏着杀机，每一秒都算数。",
   "game.f1.title": "战斗系统",
@@ -55,7 +51,6 @@
   "game.f6.title": "程序生成",
   "game.f6.body": "没有两局是一样的。随机生成的迷宫布局，带来无限重玩性。",
   "game.f6.alt": "LABYRAINTH 程序生成：地图界面中刚刚生成的迷宫布局",
-
   "trailers.eyebrow": "放映舱",
   "trailers.heading": "预告片与视频",
   "trailers.groupLabel": "预告片轮播",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "播放预告片",
   "trailers.iframeTitle": "LABYRAINTH 预告片",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "一起下潜",
   "community.heading": "加入社区",
   "community.sub": "和其他迷宫跑者交流，第一时间掌握最新动态",
@@ -76,7 +70,6 @@
   "community.discord.title": "加入 Discord",
   "community.discord.body": "晒出你的作品，找到对手，最先知道后续更新。",
   "community.discord.cta": "加入 Discord",
-
   "team.eyebrow": "船员星图 · 14",
   "team.heading": "迷宫的建造者",
   "team.sub": "认识一下打造 LABYRAINTH 沉浸式异星世界的团队",
@@ -109,14 +102,12 @@
   "team.m14.role": "社区与社交媒体运营",
   "team.m14.bio": "你能发现这款游戏，八成要感谢 Emiliano——他一直在把 LABYRAINTH 推到更多人面前。",
   "team.avatarNote": "能量球占位图 — 猫头鹰船员头像待补",
-
   "contact.eyebrow": "逃生舱口",
   "contact.heading": "联系任务控制中心",
   "contact.line1": "对 LABYRAINTH 有疑问？需要技术支持？想聊合作？",
   "contact.line2": "我们的团队随时为你的迷宫之旅提供支援。",
-  "footer.status": "Steam 抢先体验 · 曾亮相 Steam Cyberpunk Fest",
+  "footer.status": "Steam 抢先体验",
   "footer.legal": "LABYRAINTH、LabyrAInth 和 G.U.F.O. Games 均为 G.U.F.O. Games 的专有名称。所有美术素材、徽标、截图、预告片及视频内容均属其专有财产，受适用的著作权法与商标法保护。保留所有权利。第三方平台名称与徽标为其各自所有者的商标。",
-
   "feedback.meta.title": "LABYRAINTH - 反馈中心",
   "feedback.meta.description": "LABYRAINTH 反馈中心。分享你的想法、提交 Bug、提出功能建议，一起把迷宫体验做得更好。",
   "feedback.subtitle": "AI 迷宫导航挑战",

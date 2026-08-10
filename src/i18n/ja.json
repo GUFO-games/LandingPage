@@ -1,7 +1,6 @@
 {
   "meta.title": "LABYRAINTH - 迷宮からの脱出",
   "meta.description": "エイリアンの死の迷宮を駆け抜けるSF FPS『LABYRAINTH』。G.U.F.O. games 公式サイト。",
-
   "skip.link": "本文へスキップ",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "メイン",
@@ -20,7 +19,6 @@
   "nav.closeMenu": "メニューを閉じる",
   "nav.logoAlt": "G.U.F.O. games ロゴ",
   "top.backToTop": "トップへ戻る",
-
   "lang.label": "言語",
   "lang.select": "言語を選択",
   "lang.suggestText": "このサイトは日本語でご覧いただけます。",
@@ -28,13 +26,11 @@
   "lang.suggestStay": "日本語のままにする",
   "lang.suggestDismiss": "閉じる",
   "lang.suggestRegion": "言語の提案",
-
   "hero.eyebrow": "Steam早期アクセス · ブーマーシューター · ローグライト",
   "hero.subtitle": "一歩先が命取りになる、異星の迷宮へ。死のメイズを駆け抜け、地球外の脅威を撃ち倒し、時間との勝負に挑め。『LABYRAINTH』では、生き延びることそのものが芸術だ。",
   "hero.playCta": "Steamでプレイ",
   "hero.scrollCta": "迷宮へ入る",
-
-  "game.eyebrow": "潜行 01 — 06",
+  "game.eyebrow": "潜行 01 - 06",
   "game.heading": "究極の迷宮体験",
   "game.intro": "『LABYRAINTH』は、自動生成されるエイリアン迷宮を突破するスリル満点のSF FPS。プレイのたびに構造は変わり、曲がり角ごとに危険が待ち、一秒の判断が生死を分ける。",
   "game.f1.title": "戦闘システム",
@@ -55,7 +51,6 @@
   "game.f6.title": "プロシージャル生成",
   "game.f6.body": "同じ攻略は二度とない。ランダム生成される迷宮構造が、無限のリプレイ性を生む。",
   "game.f6.alt": "LABYRAINTH のプロシージャル生成: マップオーバーレイに映る生成直後の迷宮構造",
-
   "trailers.eyebrow": "投影デッキ",
   "trailers.heading": "トレーラー & 動画",
   "trailers.groupLabel": "トレーラーカルーセル",
@@ -64,7 +59,6 @@
   "trailers.playLabel": "トレーラーを再生",
   "trailers.iframeTitle": "LABYRAINTH トレーラー",
   "trailers.embedNote": "youtube-nocookie lite-embed",
-
   "community.eyebrow": "潜行に加われ",
   "community.heading": "コミュニティに参加",
   "community.sub": "同じ迷宮を走る仲間とつながり、最新情報をいち早くチェック",
@@ -76,7 +70,6 @@
   "community.discord.title": "Discordに参加",
   "community.discord.body": "作品をシェアし、ライバルを見つけ、今後のアップデートを誰よりも早く知ろう。",
   "community.discord.cta": "Discordに参加",
-
   "team.eyebrow": "クルー星座 · 14",
   "team.heading": "迷宮を設計した者たち",
   "team.sub": "LABYRAINTH の没入型エイリアン世界を作り上げたチームを紹介",
@@ -109,14 +102,12 @@
   "team.m14.role": "コミュニティ & SNS マネージャー",
   "team.m14.bio": "このゲームにたどり着けたのは、たぶん Emiliano のおかげ。LABYRAINTH を多くの人に届けてくれている。",
   "team.avatarNote": "オーブのプレースホルダー — フクロウクルーのアバターは準備中",
-
   "contact.eyebrow": "脱出ハッチ",
   "contact.heading": "ミッションコントロールに連絡",
   "contact.line1": "LABYRAINTH について知りたいことは？技術サポートが必要？コラボのご相談も歓迎。",
   "contact.line2": "迷宮走破の旅を、チームがしっかりサポートします。",
-  "footer.status": "Steam早期アクセス · Steam Cyberpunk Fest 出展",
+  "footer.status": "Steam早期アクセス",
   "footer.legal": "LABYRAINTH、LabyrAInth、G.U.F.O. Games は G.U.F.O. Games の専有名称です。すべてのアートワーク、ロゴ、スクリーンショット、トレーラー、映像コンテンツは同社に帰属し、適用される著作権法および商標法により保護されています。無断転載を禁じます。第三者プラットフォームの名称およびロゴは、各権利者の商標です。",
-
   "feedback.meta.title": "LABYRAINTH - フィードバックセンター",
   "feedback.meta.description": "LABYRAINTH のフィードバックセンター。感想を送り、バグを報告し、迷宮体験をより良くする機能を提案しよう。",
   "feedback.subtitle": "AI 迷宮ナビゲーションチャレンジ",
