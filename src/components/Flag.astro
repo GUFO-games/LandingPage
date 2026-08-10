@@ -1,0 +1,9 @@
+---
+/** Rectangular flag SVGs from lipis/flag-icons (MIT), bundled locally — no CDN. */
+interface Props { code: string; class?: string; width?: number; height?: number }
+const { code, class: className = 'lang-flag', width = 22, height = 15 } = Astro.props;
+
+const flags = import.meta.glob<{ default: ImageMetadata }>('../assets/flags/*.svg', { eager: true });
+const src = flags[`../assets/flags/${code}.svg`]?.default.src ?? '';
+---
+<img src={src} alt="" aria-hidden="true" width={width} height={height} class={className} loading="lazy" decoding="async" />

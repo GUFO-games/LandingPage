@@ -1,0 +1,39 @@
+---
+import { LINKS, useTranslations, type Locale } from '../i18n';
+import gufoLogo from '../assets/GUFO.png';
+import { Image } from 'astro:assets';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<footer class="contact" id="contacts">
+  <div class="contact-inner">
+    <div class="airlock" aria-hidden="true">
+      <span class="ring-1"></span>
+      <span class="ring-2"></span>
+      <span class="ring-3"></span>
+      <span class="ring-4"></span>
+      <span class="ring-5"></span>
+    </div>
+    <div class="contact-body" data-reveal>
+      <span class="eyebrow">{t('contact.eyebrow')}</span>
+      <h2>{t('contact.heading')}</h2>
+      <p>{t('contact.line1')}</p>
+      <p>{t('contact.line2')}</p>
+      <a class="email-pill" href={`mailto:${LINKS.email}`}>
+        <span class="email-dot" aria-hidden="true"></span>{LINKS.email}
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-brand">
+      <Image src={gufoLogo} alt="" aria-hidden="true" width={32} height={32} densities={[1, 2]} />
+      <span>{t('nav.brand')}</span>
+    </div>
+    <span class="footer-status">{t('footer.status')}</span>
+  </div>
+
+  <p class="legal">{t('footer.legal')}</p>
+</footer>

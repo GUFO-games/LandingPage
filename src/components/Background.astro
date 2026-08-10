@@ -1,0 +1,31 @@
+---
+/** Four fixed layers: nebula wash, 3 parallax starfields, 12 drifting spores. All decorative. */
+const spores = [
+  { l: '8%', t: '78%', s: 3, c: '#a78bfa', g: 'rgba(167,139,250,.9)', d: 22, delay: 0 },
+  { l: '22%', t: '92%', s: 2, c: '#c4b5fd', g: 'rgba(167,139,250,.8)', d: 26, delay: 2.5 },
+  { l: '34%', t: '70%', s: 4, c: '#a78bfa', g: 'rgba(167,139,250,.8)', d: 30, delay: 5 },
+  { l: '46%', t: '88%', s: 2, c: '#22d3ee', g: 'rgba(34,211,238,.7)', d: 24, delay: 1.4 },
+  { l: '58%', t: '96%', s: 3, c: '#a78bfa', g: 'rgba(167,139,250,.8)', d: 28, delay: 7 },
+  { l: '69%', t: '74%', s: 2, c: '#ddd6fe', g: 'rgba(221,214,254,.8)', d: 32, delay: 3.2 },
+  { l: '78%', t: '90%', s: 4, c: '#a78bfa', g: 'rgba(167,139,250,.7)', d: 25, delay: 9 },
+  { l: '88%', t: '82%', s: 2, c: '#22d3ee', g: 'rgba(34,211,238,.6)', d: 29, delay: 6.1 },
+  { l: '14%', t: '60%', s: 2, c: '#c4b5fd', g: 'rgba(196,181,253,.7)', d: 34, delay: 11 },
+  { l: '40%', t: '56%', s: 3, c: '#a78bfa', g: 'rgba(167,139,250,.7)', d: 27, delay: 13 },
+  { l: '63%', t: '62%', s: 2, c: '#ddd6fe', g: 'rgba(221,214,254,.7)', d: 31, delay: 4.4 },
+  { l: '92%', t: '66%', s: 3, c: '#a78bfa', g: 'rgba(167,139,250,.7)', d: 23, delay: 15 },
+];
+---
+<div class="bg-layers" aria-hidden="true">
+  <div class="bg-nebula"></div>
+  <div class="star-layer star-1" data-star="0.08"></div>
+  <div class="star-layer star-2" data-star="0.2"></div>
+  <div class="star-layer star-3" data-star="0.4"></div>
+  <div class="spore-field">
+    {spores.map((s) => (
+      <span
+        class="spore"
+        style={`left:${s.l};top:${s.t};width:${s.s}px;height:${s.s}px;background:${s.c};box-shadow:0 0 ${s.s * 3}px ${s.g};animation-duration:${s.d}s;animation-delay:${s.delay}s`}
+      ></span>
+    ))}
+  </div>
+</div>

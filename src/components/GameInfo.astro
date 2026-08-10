@@ -1,5 +1,5 @@
 ---
-import { useTranslations, type Locale } from '../i18n';
+import { useTranslations, type Locale, type MessageKey } from '../i18n';
 import { Picture } from 'astro:assets';
 import imgCombat from '../assets/screenshots/ImmagineProvaGioco.png';
 import imgTime from '../assets/screenshots/ImmagineProvaTempo.png';
@@ -12,37 +12,40 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
-const features = [
-  { key: 'f1', img: imgCombat },
-  { key: 'f2', img: imgTime },
-  { key: 'f3', img: imgPower },
-  { key: 'f4', img: imgCollect },
-  { key: 'f5', img: imgWorld },
-  { key: 'f6', img: imgProc },
-] as const;
+const features = [imgCombat, imgTime, imgPower, imgCollect, imgWorld, imgProc].map((img, i) => ({
+  img,
+  n: String(i + 1).padStart(2, '0'),
+  title: `game.f${i + 1}.title` as MessageKey,
+  body: `game.f${i + 1}.body` as MessageKey,
+  alt: `game.f${i + 1}.alt` as MessageKey,
+}));
 ---
-<section id="game-info" class="section game-info scroll-fade">
+<section class="section" id="game-info">
   <div class="section-inner">
-    <h2>{t('game.heading')}</h2>
-    <p class="section-intro">{t('game.intro')}</p>
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{t('game.eyebrow')}</span>
+      <h2>{t('game.heading')}</h2>
+      <p class="lede">{t('game.intro')}</p>
+    </div>
 
-    <div class="game-features">
-      {features.map(({ key, img }, i) => (
-        <article class={`feature scroll-fade ${i % 2 === 1 ? 'reverse' : ''}`} data-index={String(i + 1).padStart(2, '0')}>
-          <div class="feature-text">
-            <h3>{t(`game.${key}.title` as 'game.f1.title')}</h3>
-            <p>{t(`game.${key}.body` as 'game.f1.body')}</p>
-          </div>
-          <div class="feature-media">
+    <div class="features">
+      {features.map((f) => (
+        <article class="feature" data-reveal>
+          <span class="feature-numeral" aria-hidden="true">{f.n}</span>
+          <div class="media-well">
             <Picture
-              src={img}
-              alt={t(`game.${key}.alt` as 'game.f1.alt')}
-              widths={[480, 800, 1200]}
-              sizes="(max-width: 768px) 100vw, 50vw"
+              src={f.img}
+              alt={t(f.alt)}
+              widths={[640, 1000, 1400]}
+              sizes="(max-width: 1180px) 100vw, 1180px"
               formats={['avif', 'webp']}
               loading="lazy"
               decoding="async"
             />
+          </div>
+          <div class="feature-cap">
+            <h3>{t(f.title)}</h3>
+            <p>{t(f.body)}</p>
           </div>
         </article>
       ))}

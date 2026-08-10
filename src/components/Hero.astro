@@ -1,6 +1,6 @@
 ---
 import { LINKS, useTranslations, type Locale } from '../i18n';
-import SocialIcon from './SocialIcon.astro';
+import Icon from './Icon.astro';
 import heroShot from '../assets/screenshots/ImmagineProvaAlienWorld.png';
 import { getImage } from 'astro:assets';
 
@@ -8,25 +8,68 @@ interface Props { locale: Locale }
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
-// Cinematic backdrop (used by themes that opt in via CSS; exposed as a custom property)
-const heroBg = await getImage({ src: heroShot, width: 1920, format: 'webp', quality: 60 });
+// LCP image: pre-generate a wide WebP so the backdrop is one decode, no layout work.
+const bg = await getImage({ src: heroShot, width: 1920, format: 'webp', quality: 62 });
+const bgSmall = await getImage({ src: heroShot, width: 960, format: 'webp', quality: 58 });
 ---
-<section class="hero" id="LandingTitle" style={`--hero-image: url('${heroBg.src}')`}>
-  <div class="hero-backdrop" aria-hidden="true"></div>
-  <div class="hero-scene" aria-hidden="true">
-    <span class="hero-motif"></span>
+<section class="hero" id="LandingTitle">
+  <div class="hero-backdrop" aria-hidden="true">
+    <img
+      src={bg.src}
+      srcset={`${bgSmall.src} 960w, ${bg.src} 1920w`}
+      sizes="100vw"
+      alt=""
+      width="1920"
+      height="1046"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="hero-scrim"></div>
+    <div class="hero-bloom"></div>
   </div>
-  <div class="hero-content">
-    <h1 class="hero-logo" data-text={t('hero.title')}>
-      <span class="hero-logo-pre">LABYR</span><span class="hero-logo-ai">AI</span><span class="hero-logo-post">NTH</span>
-    </h1>
-    <p class="hero-subtitle">{t('hero.subtitle')}</p>
-    <div class="hero-actions">
-      <a class="cta-primary" href={LINKS.steam} target="_blank" rel="noopener">
-        <SocialIcon name="steam" class="cta-icon" />
-        <span>{t('hero.playCta')}</span>
+
+  <div class="hero-inner">
+    <div class="constellation" aria-hidden="true">
+      <svg viewBox="0 0 200 92" width="100%" height="auto" fill="none">
+        <g data-draw stroke="#a78bfa" stroke-width="1" stroke-linecap="round" stroke-opacity=".7">
+          <polyline points="60,28 78,17 100,13 122,17 140,28"></polyline>
+          <polyline points="28,44 60,51 100,53 140,51 172,44"></polyline>
+          <line x1="60" y1="28" x2="60" y2="51"></line>
+          <line x1="140" y1="28" x2="140" y2="51"></line>
+          <line x1="72" y1="52" x2="70" y2="70"></line>
+          <line x1="100" y1="53" x2="100" y2="78"></line>
+          <line x1="128" y1="52" x2="130" y2="70"></line>
+        </g>
+        <g fill="#ddd6fe">
+          <circle cx="60" cy="28" r="1.7"></circle><circle cx="78" cy="17" r="1.4"></circle>
+          <circle cx="100" cy="13" r="2"></circle><circle cx="122" cy="17" r="1.4"></circle>
+          <circle cx="140" cy="28" r="1.7"></circle>
+          <circle cx="28" cy="44" r="1.4"></circle><circle cx="60" cy="51" r="1.7"></circle>
+          <circle cx="100" cy="53" r="2.2"></circle><circle cx="140" cy="51" r="1.7"></circle>
+          <circle cx="172" cy="44" r="1.4"></circle>
+          <circle cx="70" cy="70" r="1.6" fill="#ff2975"></circle>
+          <circle cx="100" cy="78" r="1.9" fill="#ff2975"></circle>
+          <circle cx="130" cy="70" r="1.6" fill="#ff2975"></circle>
+          <circle cx="88" cy="28" r="2.4" fill="#22d3ee"></circle>
+          <circle cx="112" cy="28" r="2.4" fill="#22d3ee"></circle>
+        </g>
+      </svg>
+    </div>
+
+    <span class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>{t('hero.eyebrow')}</span>
+
+    <h1>LABYR<span class="wordmark-ai">AI</span>NTH</h1>
+
+    <p class="hero-sub">{t('hero.subtitle')}</p>
+
+    <div class="hero-ctas">
+      <a class="cta-steam" href={LINKS.steam} target="_blank" rel="noopener">
+        <Icon name="steam" size={22} />
+        {t('hero.playCta')}
       </a>
-      <a class="cta-ghost" href="#game-info">{t('hero.scrollCta')}</a>
+      <a class="cta-ghost" href="#game-info">
+        {t('hero.scrollCta')} <span aria-hidden="true">↓</span>
+      </a>
     </div>
   </div>
 </section>
