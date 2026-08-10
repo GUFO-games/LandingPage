@@ -13,7 +13,7 @@ const current = LOCALE_META[locale];
     class="lang-btn"
     aria-haspopup="listbox"
     aria-expanded="false"
-    aria-label={t('lang.label')}
+    aria-label={`${t('lang.label')}: ${locale.toUpperCase()}`}
   >
     <Flag code={current.flag} />
     <span>{locale.toUpperCase()}</span>

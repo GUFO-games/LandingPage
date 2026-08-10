@@ -8,6 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
+    "check:assets": "node scripts/check-assets.mjs",
+    "verify": "astro check && astro build && node scripts/check-assets.mjs",
     "astro": "astro"
   },
   "dependencies": {

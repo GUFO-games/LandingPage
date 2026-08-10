@@ -37,7 +37,8 @@
   --text: #f2eefc;
   --text-body: #d6cdea;
   --text-muted: #a99cc9;
-  --text-faint: rgba(169, 156, 201, 0.7);
+  /* .88 not .7 — the handoff's faint tone failed AA at 11-12px on --bg-0 */
+  --text-faint: rgba(169, 156, 201, 0.88);
   --numeral: rgba(242, 238, 252, 0.045);
 
   /* Effects */
@@ -73,7 +74,12 @@ body {
   line-height: 1.75;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  /* Long compounds in ru/de/fr overflow tight columns at 375px (the Russian
+     community heading was 424px in a 335px box). Only fires when a word cannot fit. */
+  overflow-wrap: break-word;
 }
+
+h1, h2, h3 { overflow-wrap: break-word; }
 
 .page-root { position: relative; min-height: 100vh; background: var(--bg-0); isolation: isolate; }
 
@@ -430,7 +436,7 @@ button:focus-visible,
 }
 .hero-inner { position: relative; max-width: 1280px; margin: 0 auto; width: 100%; }
 .constellation { width: clamp(196px, 23vw, 330px); margin: 0 0 clamp(1.5rem, 4vh, 2.5rem); opacity: 0.9; }
-.constellation svg { display: block; overflow: visible; }
+.constellation svg { display: block; height: auto; overflow: visible; }
 .constellation [data-draw] { stroke-dasharray: 640; animation: cd-dash 1.2s var(--ease) forwards; }
 
 .hero .eyebrow { margin-bottom: 26px; }
@@ -501,7 +507,10 @@ button:focus-visible,
 /* Features */
 .features { display: flex; flex-direction: column; gap: clamp(5rem, 11vh, 9rem); }
 .feature { position: relative; display: flex; flex-direction: column; gap: 28px; }
-.feature-numeral {
+/* Generated content, not a text node: this is a decorative watermark, and a
+   4.5%-opacity numeral is not text anyone is meant to read. */
+.feature::before {
+  content: attr(data-numeral);
   position: absolute;
   top: -3.5rem;
   left: -0.6rem;
@@ -512,7 +521,7 @@ button:focus-visible,
   color: var(--numeral);
 }
 .feature:nth-child(even) { align-items: flex-end; }
-.feature:nth-child(even) .feature-numeral { left: auto; right: -0.6rem; }
+.feature:nth-child(even)::before { left: auto; right: -0.6rem; }
 .feature:nth-child(even) .feature-cap { text-align: right; margin-left: auto; }
 .media-well {
   position: relative;
@@ -785,7 +794,7 @@ button:focus-visible,
   font: 500 11px/1.6 var(--font-mono);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(169, 156, 201, 0.65);
+  color: var(--text-faint);
 }
 
 /* ============================================================
@@ -858,7 +867,7 @@ button:focus-visible,
 .footer-brand img { width: 32px; height: 32px; border-radius: var(--radius-sm); opacity: 0.85; }
 .footer-brand span { font: 700 12px/1 var(--font-display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
 .footer-status { font: 500 11px/1.5 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
-.legal { position: relative; max-width: 1280px; margin: 24px auto 0; font-size: 12px; line-height: 1.75; color: rgba(169, 156, 201, 0.72); text-wrap: pretty; }
+.legal { position: relative; max-width: 1280px; margin: 24px auto 0; font-size: 12px; line-height: 1.75; color: var(--text-faint); text-wrap: pretty; }
 
 .scroll-top {
   position: fixed;
@@ -1032,7 +1041,7 @@ button:focus-visible,
 }
 
 @media (max-width: 767px) {
-  .feature-numeral { top: -2.4rem; font-size: clamp(3.5rem, 18vw, 6rem); }
+  .feature::before { top: -2.4rem; font-size: clamp(3.5rem, 18vw, 6rem); }
   .feature:nth-child(even) { align-items: stretch; }
   .feature:nth-child(even) .feature-cap { text-align: left; }
   .badge { position: static; align-self: flex-start; margin-bottom: 16px; }

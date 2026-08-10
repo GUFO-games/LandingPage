@@ -30,8 +30,7 @@ const features = [imgCombat, imgTime, imgPower, imgCollect, imgWorld, imgProc].m
 
     <div class="features">
       {features.map((f) => (
-        <article class="feature" data-reveal>
-          <span class="feature-numeral" aria-hidden="true">{f.n}</span>
+        <article class="feature" data-reveal data-numeral={f.n}>
           <div class="media-well">
             <Picture
               src={f.img}
