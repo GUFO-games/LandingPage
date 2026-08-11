@@ -1,0 +1,19 @@
+---
+/**
+ * Official LABYRAINTH wordmark, traced from the studio's flat artwork
+ * (scripts/trace-logo.mjs). Inlined rather than <img> so CSS can recolour the
+ * AI pair independently and apply the neon glow as a live effect — the glow
+ * stays sharp at any size instead of being baked into a raster.
+ */
+import svg from '../assets/brand/labyrainth-wordmark.svg?raw';
+
+interface Props { class?: string }
+const { class: className = '' } = Astro.props;
+
+// The traced file carries the print colours; the site themes them via CSS.
+const themed = svg
+  .replace('<svg ', '<svg aria-hidden="true" focusable="false" ')
+  .replace(/ fill="#350135"/g, '')
+  .replace(/ fill="#900202"/g, '');
+---
+<span class={`wordmark ${className}`} set:html={themed} />

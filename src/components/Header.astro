@@ -3,6 +3,7 @@ import { LINKS, localeUrl, SUGGEST_STRINGS, useTranslations, type Locale } from 
 import Icon from './Icon.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import gufoLogo from '../assets/GUFO.png';
+import gufoLockup from '../assets/brand/gufo-lockup.webp';
 import { Image } from 'astro:assets';
 
 interface Props { locale: Locale }
@@ -34,9 +35,10 @@ const navItems = [
   </div>
 
   <header class="site-header">
-    <a href={`${home}#LandingTitle`} class="brand">
-      <Image src={gufoLogo} alt={t('nav.logoAlt')} width={40} height={40} densities={[1, 2]} />
-      <span class="brand-word">{t('nav.brand')}</span>
+    <a href={`${home}#LandingTitle`} class="brand" aria-label={t('nav.brand')}>
+      {/* Official lockup on desktop; the mark alone once the header goes compact. */}
+      <Image class="brand-lockup" src={gufoLockup} alt={t('nav.brand')} width={216} height={80} densities={[1, 2]} loading="eager" />
+      <Image class="brand-mark" src={gufoLogo} alt="" aria-hidden="true" width={40} height={40} densities={[1, 2]} loading="eager" />
     </a>
 
     <nav class="nav-links" aria-label={t('nav.label')}>

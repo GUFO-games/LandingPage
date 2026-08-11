@@ -1,6 +1,7 @@
 ---
 import { LINKS, useTranslations, type Locale } from '../i18n';
 import Icon from './Icon.astro';
+import Wordmark from './Wordmark.astro';
 import heroShot from '../assets/screenshots/ImmagineProvaAlienWorld.png';
 import { getImage } from 'astro:assets';
 
@@ -58,7 +59,7 @@ const bgSmall = await getImage({ src: heroShot, width: 960, format: 'webp', qual
 
     <span class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>{t('hero.eyebrow')}</span>
 
-    <h1>LABYR<span class="wordmark-ai">AI</span>NTH</h1>
+    <h1 class="hero-title"><span class="sr-only">LABYRAINTH</span><Wordmark /></h1>
 
     <p class="hero-sub">{t('hero.subtitle')}</p>
 

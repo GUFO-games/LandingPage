@@ -1,6 +1,6 @@
 ---
 import { LINKS, useTranslations, type Locale } from '../i18n';
-import gufoLogo from '../assets/GUFO.png';
+import gufoLockup from '../assets/brand/gufo-lockup.webp';
 import { Image } from 'astro:assets';
 
 interface Props { locale: Locale }
@@ -29,8 +29,7 @@ const t = useTranslations(locale);
 
   <div class="footer-bar">
     <div class="footer-brand">
-      <Image src={gufoLogo} alt="" aria-hidden="true" width={32} height={32} densities={[1, 2]} />
-      <span>{t('nav.brand')}</span>
+      <Image src={gufoLockup} alt={t('nav.brand')} width={189} height={70} densities={[1, 2]} />
     </div>
     <span class="footer-status">{t('footer.status')}</span>
   </div>

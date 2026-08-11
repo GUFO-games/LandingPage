@@ -218,13 +218,8 @@ button:focus-visible,
 
 .brand { display: flex; align-items: center; gap: 12px; margin-right: auto; color: var(--text); }
 .brand:hover { color: var(--text); }
-.brand img { width: 40px; height: 40px; border-radius: var(--radius-sm); }
-.brand-word {
-  font: 700 15px/1 var(--font-display);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
+.brand-lockup { width: auto; height: 44px; border-radius: var(--radius-sm); }
+.brand-mark { display: none; width: 40px; height: 40px; border-radius: var(--radius-sm); }
 
 .nav-links { display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.9rem); }
 .nav-link {
@@ -455,13 +450,30 @@ button:focus-visible,
 .constellation [data-draw] { stroke-dasharray: 640; animation: cd-dash 1.2s var(--ease) forwards; }
 
 .hero .eyebrow { margin-bottom: 26px; }
-.hero h1 {
-  margin: 0 0 26px;
-  font: 700 clamp(3.2rem, 13vw, 11rem) / 0.9 var(--font-display);
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  text-shadow: 0 0 60px rgba(5, 3, 10, 0.9);
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
+
+/* Hero title is the official wordmark. The <h1> keeps real text for search and
+   screen readers; the SVG is decorative on top of it. */
+.hero-title { margin: 0 0 26px; }
+.wordmark { display: block; width: 100%; max-width: min(1080px, 92%); }
+.wordmark svg { display: block; width: 100%; height: auto; overflow: visible; }
+.wordmark .mark-0 {
+  fill: var(--text);
+  filter: drop-shadow(0 0 26px rgba(167, 139, 250, 0.45)) drop-shadow(0 0 60px rgba(5, 3, 10, 0.9));
+}
+.wordmark .mark-1 {
+  fill: var(--accent-ai);
+  filter: drop-shadow(0 0 22px rgba(255, 41, 117, 0.75));
+}
+/* Feedback header keeps the mixed-case prose styling of the name. */
 .wordmark-ai { color: var(--accent-ai); text-shadow: 0 0 30px rgba(255, 41, 117, 0.5); }
 .hero-sub {
   margin: 0 0 40px;
@@ -903,8 +915,7 @@ button:focus-visible,
   flex-wrap: wrap;
 }
 .footer-brand { display: flex; align-items: center; gap: 13px; }
-.footer-brand img { width: 32px; height: 32px; border-radius: var(--radius-sm); opacity: 0.85; }
-.footer-brand span { font: 700 12px/1 var(--font-display); letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); }
+.footer-brand img { width: auto; height: 40px; border-radius: var(--radius-sm); opacity: 0.9; }
 .footer-status { font: 500 11px/1.5 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
 .legal { position: relative; max-width: 1280px; margin: 24px auto 0; font-size: 12px; line-height: 1.75; color: var(--text-faint); text-wrap: pretty; }
 
@@ -1068,7 +1079,8 @@ button:focus-visible,
   .nav-links,
   .nav-discord { display: none; }
   .hamburger { display: flex; }
-  .brand-word { display: none; }
+  .brand-lockup { display: none; }
+  .brand-mark { display: block; }
   .nav-steam { padding: 12px 17px; }
   .nav-steam .cta-full { display: none; }
 }
