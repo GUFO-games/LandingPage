@@ -1,6 +1,10 @@
 {
   "meta.title": "LABYRAINTH - Escape the Labyrinth",
   "meta.description": "G.U.F.O. games landing page for LABYRAINTH, a sci-fi FPS game where players navigate deadly alien mazes.",
+  "notfound.title": "404 - Sector not found | LABYRAINTH",
+  "notfound.heading": "Sector not found",
+  "notfound.lead": "This corridor doesn't exist - the labyrinth reconfigured, or the link decayed. Head back to the surface, or descend properly.",
+  "notfound.home": "Back to the landing page",
   "skip.link": "Skip to content",
   "nav.brand": "G.U.F.O. Games",
   "nav.label": "Main",
