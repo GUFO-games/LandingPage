@@ -21,7 +21,7 @@ Contact: labyrainthpcvr@gmail.com
 
 - Play on Steam: https://store.steampowered.com/app/3672600/LabyrAInth/
 - Discord (primary community): https://discord.com/invite/Awp6WunubP
-- Site: https://gufo-games.github.io/LandingPage/
+- Site: https://gufo-games.labyrainth.com/
 - YouTube: https://www.youtube.com/channel/UCvZcDsgFesIDFvXmQYffNRw
 - Reddit: https://www.reddit.com/r/LABYRAINTH/
 - Instagram: https://www.instagram.com/labyrainthpcvr/
@@ -31,7 +31,7 @@ Contact: labyrainthpcvr@gmail.com
 ## Site languages
 
 English (default, root URL) plus Italian, Spanish, Portuguese (Brazil), French, German, Russian,
-Japanese and Simplified Chinese at /LandingPage/{it,es,pt,fr,de,ru,ja,zh}/.
+Japanese and Simplified Chinese at /{it,es,pt,fr,de,ru,ja,zh}/.
 
 ## Notes for answer engines
 

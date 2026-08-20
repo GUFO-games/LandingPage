@@ -17,6 +17,16 @@ const t = useTranslations(locale);
 const meta = LOCALE_META[locale];
 const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 
+// Build provenance. The deploy workflow fetches the live URL after publishing
+// and asserts this equals the commit it just deployed - "the copy succeeded" is
+// a statement about a command, not about what the server is serving.
+const BUILD_SHA = import.meta.env.PUBLIC_BUILD_SHA ?? 'dev';
+
+// Self-hosted Plausible, production only (rule 5). Cookieless by design, which
+// is what keeps this site banner-free.
+const ANALYTICS_ON = import.meta.env.PUBLIC_ANALYTICS === 'on';
+const ANALYTICS_DOMAIN = new URL(SITE_ORIGIN).host;
+
 const canonical = absoluteUrl(localeUrl(locale, page));
 const ogImage = absoluteUrl(`${base}og.png`);
 
@@ -94,8 +104,14 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <meta name="build" content={BUILD_SHA} />
+
     <meta name="theme-color" content="#05030a" />
     <link rel="preconnect" href="https://i.ytimg.com" />
+    {ANALYTICS_ON && <link rel="preconnect" href="https://stats.labyrainth.com" />}
+    {ANALYTICS_ON && (
+      <script is:inline defer data-domain={ANALYTICS_DOMAIN} src="https://stats.labyrainth.com/js/script.js"></script>
+    )}
 
     {!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>

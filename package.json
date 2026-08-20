@@ -9,8 +9,12 @@
     "preview": "astro preview",
     "typecheck": "astro check",
     "check:assets": "node scripts/check-assets.mjs",
-    "verify": "node scripts/guard-build.mjs && astro check && astro build && node scripts/check-assets.mjs",
-    "astro": "astro"
+    "verify": "node scripts/guard-build.mjs && astro check && astro build --mode production && node scripts/check-assets.mjs",
+    "astro": "astro",
+    "serve": "astro dev",
+    "build:cat": "astro build --mode cat",
+    "build:prod": "astro build --mode production",
+    "verify:cat": "node scripts/guard-build.mjs && astro check && astro build --mode cat && node scripts/check-assets.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",

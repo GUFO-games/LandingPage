@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-
-# The Feedback Center is an unlisted route. It is crawlable so its noindex tag
-# can be read, but it is never linked from the site and stays out of the sitemap.
-
-Sitemap: https://gufo-games.github.io/LandingPage/sitemap-index.xml

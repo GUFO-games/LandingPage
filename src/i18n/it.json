@@ -119,5 +119,8 @@
   "feedback.warning.p1": "Hai una sola occasione per lasciarci il tuo feedback: partecipa quando avrai giocato abbastanza (almeno 10 livelli).",
   "feedback.warning.p2": "Tutti i feedback saranno esaminati dal nostro team di sviluppo e li terremo in considerazione per aggiornamenti e migliorie future.",
   "feedback.warning.p3": "Grazie per aiutarci a migliorare l'esperienza LABYRAINTH.",
-  "feedback.formNotice": "Il modulo è disponibile solo in inglese."
+  "feedback.formNotice": "Il modulo è disponibile solo in inglese.",
+  "forbidden.title": "403 - Link scaduto | LABYRAINTH",
+  "forbidden.heading": "Questo link e scaduto",
+  "forbidden.lead": "I link di anteprima hanno una scadenza voluta. Chiedine uno nuovo, oppure vai al sito pubblico."
 }

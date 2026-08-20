@@ -123,5 +123,8 @@
   "feedback.warning.p1": "You only have 1 chance of telling us your feedback so do participate when you have played the game sufficiently (at least 10 levels).",
   "feedback.warning.p2": "All feedback will be reviewed by our development team, and we will consider it for future updates and improvements.",
   "feedback.warning.p3": "Thank you for helping us improve the LABYRAINTH experience.",
-  "feedback.formNotice": "The form is available in English."
+  "feedback.formNotice": "The form is available in English.",
+  "forbidden.title": "403 - Link expired | LABYRAINTH",
+  "forbidden.heading": "This link has expired",
+  "forbidden.lead": "Preview links are time-limited on purpose. Ask for a fresh one, or head to the public site."
 }

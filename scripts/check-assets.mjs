@@ -10,7 +10,10 @@ import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
-const BASE = '/LandingPage/';
+// Must match astro.config's `base`. Hardcoding it was a live trap: if BASE
+// stops matching the real base, every local reference is skipped as
+// "external" and this gate reports success having checked nothing.
+const BASE = `${(process.env.SITE_BASE || '/').replace(/\/+$/, '')}/`;
 
 const htmlFiles = [];
 (function walk(dir) {
@@ -35,7 +38,11 @@ for (const file of htmlFiles) {
     // srcset carries several candidates: "a.webp 960w, b.webp 1920w"
     for (const part of raw.split(',')) {
       const url = part.trim().split(/\s+/)[0];
-      if (!url || !url.startsWith(BASE)) continue; // skip external URLs and bare anchors
+      if (!url) continue;
+      // With BASE = '/', a naive startsWith() would also match protocol-relative
+      // URLs (//cdn.example.com/x.js) and treat them as local files.
+      if (url.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(url)) continue;
+      if (!url.startsWith(BASE)) continue; // bare anchors, relative paths
       urls.add(url.split('#')[0].split('?')[0]);
     }
   }
@@ -49,7 +56,13 @@ for (const file of htmlFiles) {
   }
 }
 
-console.log(`checked ${checked} local references across ${htmlFiles.length} pages`);
+console.log(`checked ${checked} local references across ${htmlFiles.length} pages (base ${BASE})`);
+// A run that checks nothing means the BASE filter is wrong, not that the site is clean.
+if (checked === 0) {
+  console.error(`
+NO references matched base ${BASE} - the filter is misconfigured, not the site.`);
+  process.exit(1);
+}
 if (missing.size) {
   console.error(`\nMISSING ${missing.size} asset(s):`);
   for (const [url, pages] of missing) {

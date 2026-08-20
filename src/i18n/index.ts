@@ -57,7 +57,10 @@ export function localeUrl(locale: Locale, page: 'landing' | 'feedback' = 'landin
   return page === 'feedback' ? `${prefix}feedback/` : prefix;
 }
 
-export const SITE_ORIGIN = 'https://gufo-games.github.io';
+// The host lives in TWO places: astro.config's `site` (used by the sitemap)
+// and here (used by canonical, hreflang, OG and JSON-LD via absoluteUrl).
+// Both read the same env var so they cannot drift apart.
+export const SITE_ORIGIN = (import.meta.env.PUBLIC_SITE_URL ?? 'https://gufo-games.labyrainth.com').replace(/\/+$/, '');
 export const absoluteUrl = (path: string) => `${SITE_ORIGIN}${path}`;
 
 /** Binding external links (content contract; FIX-1/4/5 applied). */

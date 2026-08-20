@@ -4,18 +4,26 @@
     <meta charset="UTF-8" />
     <title>LABYRAINTH - Feedback Center</title>
     <meta name="robots" content="noindex, nofollow" />
-    <!-- The Feedback Center moved to /LandingPage/feedback/ in the 2026 rebuild.
-         This stub keeps the URL players were already given alive. -->
-    <meta http-equiv="refresh" content="0; url=/LandingPage/feedback/" />
-    <link rel="canonical" href="https://gufo-games.github.io/LandingPage/feedback/" />
+    <!--
+      The Survey button in shipped LABYRAINTH builds opens exactly this path:
+        Source/LabyrAInth/Widgets/InLobby/MainMenuUI.cpp
+      Those binaries are already in players' hands and cannot be patched
+      retroactively, so this URL has to keep working indefinitely.
+
+      Absolute target on purpose: this file is served from two different origins
+      (the legacy GitHub Pages host, and the current site), and only an absolute
+      URL is correct from both.
+    -->
+    <meta http-equiv="refresh" content="0; url=https://gufo-games.labyrainth.com/feedback/" />
+    <link rel="canonical" href="https://gufo-games.labyrainth.com/feedback/" />
     <style>
       body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #05030a;
              color: #d6cdea; font: 16px/1.7 system-ui, sans-serif; text-align: center; padding: 24px; }
       a { color: #a78bfa; }
     </style>
-    <script>window.location.replace('/LandingPage/feedback/');</script>
+    <script>window.location.replace('https://gufo-games.labyrainth.com/feedback/');</script>
   </head>
   <body>
-    <p>The Feedback Center has moved.<br /><a href="/LandingPage/feedback/">Continue to the Feedback Center</a></p>
+    <p>The Feedback Center has moved.<br /><a href="https://gufo-games.labyrainth.com/feedback/">Continue to the Feedback Center</a></p>
   </body>
 </html>
