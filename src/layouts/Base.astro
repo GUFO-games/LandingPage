@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import {
+  LOCALES, LOCALE_META, DEFAULT_LOCALE, localeUrl, absoluteUrl, LINKS, VIDEO_IDS, SITE_ORIGIN,
+  useTranslations, type Locale,
+} from '../i18n';
+
+interface Props {
+  locale: Locale;
+  page: 'landing' | 'feedback';
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { locale, page, title, description, noindex = false } = Astro.props;
+const t = useTranslations(locale);
+const meta = LOCALE_META[locale];
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+// Build provenance. The deploy workflow fetches the live URL after publishing
+// and asserts this equals the commit it just deployed - "the copy succeeded" is
+// a statement about a command, not about what the server is serving.
+const BUILD_SHA = import.meta.env.PUBLIC_BUILD_SHA ?? 'dev';
+
+// Self-hosted Plausible, production only (rule 5). Cookieless by design, which
+// is what keeps this site banner-free.
+const ANALYTICS_ON = import.meta.env.PUBLIC_ANALYTICS === 'on';
+const ANALYTICS_DOMAIN = new URL(SITE_ORIGIN).host;
+
+const canonical = absoluteUrl(localeUrl(locale, page));
+const ogImage = absoluteUrl(`${base}og.png`);
+
+// GEO/SEO structured data. Only facts that are verifiable from the studio's own channels.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'VideoGame',
+      name: 'LABYRAINTH',
+      alternateName: 'LabyrAInth',
+      url: absoluteUrl(localeUrl(DEFAULT_LOCALE, 'landing')),
+      description,
+      image: ogImage,
+      inLanguage: LOCALES.map((l) => LOCALE_META[l].htmlLang),
+      genre: ['First-person shooter', 'Roguelite', 'Science fiction'],
+      gamePlatform: ['PC', 'Windows', 'macOS'],
+      applicationCategory: 'Game',
+      operatingSystem: 'Windows, macOS',
+      author: { '@id': `${SITE_ORIGIN}/#gufo` },
+      publisher: { '@id': `${SITE_ORIGIN}/#gufo` },
+      sameAs: [LINKS.steam],
+      trailer: VIDEO_IDS.map((id, i) => ({
+        '@type': 'VideoObject',
+        name: `LABYRAINTH trailer ${i + 1}`,
+        description,
+        thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,
+      })),
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_ORIGIN}/#gufo`,
+      name: 'G.U.F.O. Games',
+      url: absoluteUrl(localeUrl(DEFAULT_LOCALE, 'landing')),
+      logo: absoluteUrl(`${base}gufo-logo.png`),
+      email: LINKS.email,
+      sameAs: [LINKS.steam, LINKS.discord, LINKS.youtube, LINKS.instagram, LINKS.tiktok, LINKS.facebook, LINKS.reddit],
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang={meta.htmlLang} data-theme="cosmic-descent">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    {/* hreflang matrix — landing pages only; the feedback route stays unlisted */}
+    {!noindex && LOCALES.map((code) => (
+      <link rel="alternate" hreflang={LOCALE_META[code].htmlLang} href={absoluteUrl(localeUrl(code, page))} />
+    ))}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={absoluteUrl(localeUrl(DEFAULT_LOCALE, page))} />}
+
+    {/* 96 = 48×48 multiple, the size Google displays in mobile SERPs (launch-seo-checklist v1.1) */}
+    <link rel="icon" href={`${base}favicon-96.png`} type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="G.U.F.O. Games" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="LABYRAINTH — a sci-fi roguelite FPS by G.U.F.O. Games" />
+    <meta property="og:locale" content={meta.ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="build" content={BUILD_SHA} />
+
+    <meta name="theme-color" content="#05030a" />
+    <link rel="preconnect" href="https://i.ytimg.com" />
+    {ANALYTICS_ON && <link rel="preconnect" href="https://stats.labyrainth.com" />}
+    {ANALYTICS_ON && (
+      <script is:inline defer data-domain={ANALYTICS_DOMAIN} src="https://stats.labyrainth.com/js/script.js"></script>
+    )}
+
+    {!noindex && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <div class="page-root">
+      <a class="skip-link" href="#game-info">{t('skip.link')}</a>
+      <slot />
+    </div>
+  </body>
+</html>

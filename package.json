@@ -1,0 +1,32 @@
+{
+  "name": "gufo-landingpage",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "check:assets": "node scripts/check-assets.mjs",
+    "verify": "node scripts/guard-build.mjs && astro check && astro build --mode production && node scripts/check-assets.mjs",
+    "astro": "astro",
+    "serve": "astro dev",
+    "build:cat": "astro build --mode cat",
+    "build:prod": "astro build --mode production",
+    "verify:cat": "node scripts/guard-build.mjs && astro check && astro build --mode cat && node scripts/check-assets.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.4.1",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "astro": "^5.12.0",
+    "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@resvg/resvg-js": "^2.6.2",
+    "potrace": "^2.1.8",
+    "typescript": "^5.8.3"
+  }
+}

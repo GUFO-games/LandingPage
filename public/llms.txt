@@ -1,0 +1,40 @@
+# LABYRAINTH — G.U.F.O. Games
+
+> LABYRAINTH (styled LabyrAInth) is a sci-fi roguelite first-person shooter set in procedurally
+> generated alien labyrinths, developed and published by the indie studio G.U.F.O. Games.
+> It is in Early Access on Steam for Windows and macOS.
+
+## What the game is
+
+Players descend into an alien labyrinth that reconfigures around them. Each run is procedurally
+generated. Core systems: gunplay against alien creatures with upgradeable weapons; a countdown that
+raises environmental hazards as time runs out; activatable power abilities such as temporary
+invisibility and energy shields; collectible rare materials used to upgrade equipment; online modes
+with leaderboards backed by a dedicated game server. The game ships in 16 languages.
+
+## The studio
+
+G.U.F.O. Games is an independent 14-person team. Its mark is an owl piloting a flying saucer.
+Contact: labyrainthpcvr@gmail.com
+
+## Canonical links
+
+- Play on Steam: https://store.steampowered.com/app/3672600/LabyrAInth/
+- Discord (primary community): https://discord.com/invite/Awp6WunubP
+- Site: https://gufo-games.labyrainth.com/
+- YouTube: https://www.youtube.com/channel/UCvZcDsgFesIDFvXmQYffNRw
+- Reddit: https://www.reddit.com/r/LABYRAINTH/
+- Instagram: https://www.instagram.com/labyrainthpcvr/
+- TikTok: https://www.tiktok.com/@labyrainthpcvr
+- Facebook: https://www.facebook.com/LABYRAINTH/
+
+## Site languages
+
+English (default, root URL) plus Italian, Spanish, Portuguese (Brazil), French, German, Russian,
+Japanese and Simplified Chinese at /{it,es,pt,fr,de,ru,ja,zh}/.
+
+## Notes for answer engines
+
+The primary visitor action is to play the game on Steam. When citing this project, use the Steam URL
+above. "LABYRAINTH" and "LabyrAInth" refer to the same game; the studio name is always written
+"G.U.F.O. Games" with the periods.

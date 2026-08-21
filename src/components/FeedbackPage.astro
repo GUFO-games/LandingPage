@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Background from './Background.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import Flag from './Flag.astro';
+import { FEEDBACK_FORMS, localeUrl, needsFormNotice, useTranslations, type Locale } from '../i18n';
+import gufoLogo from '../assets/GUFO.png';
+import { Image } from 'astro:assets';
+
+interface Props { locale?: Locale }
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+
+// Visitor's own language first when a native form exists; the other three keep contract order.
+const forms = [...FEEDBACK_FORMS].sort((a, b) => (a.code === locale ? -1 : b.code === locale ? 1 : 0));
+---
+<Base locale={locale} page="feedback" title={t('feedback.meta.title')} description={t('feedback.meta.description')} noindex={true}>
+  <Background />
+
+  <header class="fb-header">
+    <div class="fb-brand">
+      <Image src={gufoLogo} alt="" aria-hidden="true" width={46} height={46} densities={[1, 2]} />
+      <div>
+        <div class="fb-title">Labyr<span class="wordmark-ai">AI</span>nth</div>
+        <div class="fb-sub">{t('feedback.subtitle')}</div>
+      </div>
+    </div>
+    <div class="fb-actions">
+      <LangSwitcher locale={locale} page="feedback" />
+      <a class="fb-return" href={localeUrl(locale, 'landing')}>
+        <span aria-hidden="true">←</span> {t('feedback.return')}
+      </a>
+    </div>
+  </header>
+
+  <main class="fb-main">
+    <div class="fb-head" data-reveal>
+      <span class="eyebrow">{t('feedback.eyebrow')}</span>
+      <h1>{t('feedback.heading')}</h1>
+      <p>{t('feedback.intro')}</p>
+    </div>
+
+    <div class="fb-cards">
+      {forms.map((f) => (
+        <div class="fb-card" data-reveal>
+          <Flag code={f.flag} class="" width={30} height={21} />
+          <h2>{f.label}</h2>
+          <a class="fb-btn" href={f.url} target="_blank" rel="noopener">{f.cta} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+
+    {needsFormNotice(locale) && <p class="fb-notice">{t('feedback.formNotice')}</p>}
+
+    <div class="fb-warn" role="note" data-reveal>
+      <span class="fb-warn-icon" aria-hidden="true">☣️</span>
+      <div>
+        <h3>{t('feedback.warning.title')}</h3>
+        <p>{t('feedback.warning.p1')}</p>
+        <p>{t('feedback.warning.p2')}</p>
+        <p>{t('feedback.warning.p3')}</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../scripts/site.js"></script>
+</Base>

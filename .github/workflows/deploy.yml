@@ -1,0 +1,113 @@
+# Deploy the landing page to the LabyrAInth VPS.
+#
+# Runs on the box itself, as the unprivileged `fe-runner` user (no sudo, no
+# docker group). Nothing is sent over SSH and GitHub holds no server
+# credentials - the runner already IS on the machine.
+#
+#   push to main        -> cat  (pre-production, gated, noindex)
+#   workflow_dispatch   -> cat or prod, by hand
+#
+# Design notes: labyrainth-infra/runbooks/WP11-*.md
+name: Deploy
+
+on:
+  push:
+    # TODO: drop feat/env-build-contract once WP11 is merged and live.
+    branches: [main, feat/env-build-contract]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy
+        required: true
+        default: cat
+        type: choice
+        options: [cat, prod]
+
+# Serialise deploys per environment. Never cancel one in flight: a half-copied
+# release directory is worse than a queued job.
+concurrency:
+  group: deploy-gufo-games-${{ github.event.inputs.environment || 'cat' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, fe-static]
+    env:
+      SITE: gufo-games
+      ENVIRONMENT: ${{ github.event.inputs.environment || 'cat' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Stamp the build with this commit
+        # .env is gitignored and loaded by Vite in EVERY mode, while
+        # .env.cat / .env.production hold the per-mode config. Writing the SHA
+        # here is deterministic - relying on process.env reaching
+        # import.meta.env would depend on Vite's prefix handling.
+        run: echo "PUBLIC_BUILD_SHA=${GITHUB_SHA}" > .env
+
+      - name: Verify and build
+        # The full gate: guard-build, astro check, build, asset integrity.
+        run: |
+          if [ "$ENVIRONMENT" = "prod" ]; then
+            npm run verify
+          else
+            npm run verify:cat
+          fi
+
+      - name: Publish release
+        run: |
+          set -euo pipefail
+          REL="/srv/www/${SITE}/${ENVIRONMENT}/releases/${GITHUB_SHA}"
+          TMP="${REL}.incoming"
+          OLD="${REL}.replaced-$$"
+
+          rm -rf "$TMP"
+          cp -a dist "$TMP"
+
+          # Swap rather than delete-then-write: a re-deploy of the same SHA must
+          # never leave `current` pointing at a directory that briefly does not
+          # exist. mv within one filesystem is rename(2) - atomic.
+          if [ -e "$REL" ]; then mv -T "$REL" "$OLD"; fi
+          mv -T "$TMP" "$REL"
+          rm -rf "$OLD"
+
+          /usr/local/bin/deploy-flip "$SITE" "$ENVIRONMENT" "$GITHUB_SHA"
+
+      - name: Smoke - the LIVE site must serve THIS commit
+        env:
+          CAT_AUTH: ${{ secrets.CAT_BASIC_AUTH }}
+        run: |
+          set -uo pipefail
+          if [ "$ENVIRONMENT" = "prod" ]; then
+            URL="https://gufo-games.labyrainth.com/"
+          else
+            URL="https://cat.gufo-games.labyrainth.com/"
+          fi
+
+          for attempt in 1 2 3 4 5; do
+            if [ "$ENVIRONMENT" = "prod" ]; then
+              body=$(curl -fsS --max-time 20 "$URL" || true)
+            else
+              body=$(curl -fsS --max-time 20 -u "$CAT_AUTH" "$URL" || true)
+            fi
+            if printf '%s' "$body" | grep -q "name=\"build\" content=\"${GITHUB_SHA}\""; then
+              echo "OK - ${URL} is serving ${GITHUB_SHA}"
+              exit 0
+            fi
+            echo "attempt ${attempt}: not yet"
+            sleep 3
+          done
+
+          echo "FAILED - ${URL} is not serving ${GITHUB_SHA}"
+          echo "what it actually reports:"
+          printf '%s' "$body" | grep -o 'name="build" content="[^"]*"' || echo "  (no build meta in the response at all)"
+          exit 1

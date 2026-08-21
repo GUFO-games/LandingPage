@@ -1,0 +1,74 @@
+---
+import { LINKS, localeUrl, SUGGEST_STRINGS, useTranslations, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import gufoLogo from '../assets/GUFO.png';
+import gufoLockup from '../assets/brand/gufo-lockup.webp';
+import { Image } from 'astro:assets';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const home = localeUrl(locale, 'landing');
+
+const navItems = [
+  { href: '#game-info', label: t('nav.game') },
+  { href: '#trailer', label: t('nav.trailers') },
+  { href: '#community', label: t('nav.community') },
+  { href: '#team', label: t('nav.team') },
+  { href: '#contacts', label: t('nav.contact') },
+];
+---
+<div class="header-shell">
+  <div
+    class="lang-suggest"
+    role="region"
+    aria-label={t('lang.suggestRegion')}
+    data-lang-suggest
+    data-current={locale}
+    data-strings={JSON.stringify(SUGGEST_STRINGS)}
+    hidden
+  >
+    <span data-suggest-text></span>
+    <button type="button" class="suggest-yes" data-suggest-yes></button>
+    <button type="button" class="suggest-no" data-suggest-no>{t('lang.suggestStay')}</button>
+  </div>
+
+  <header class="site-header">
+    <a href={`${home}#LandingTitle`} class="brand" aria-label={t('nav.brand')}>
+      {/* Official lockup on desktop; the mark alone once the header goes compact. */}
+      <Image class="brand-lockup" src={gufoLockup} alt={t('nav.brand')} width={216} height={80} densities={[1, 2]} loading="eager" />
+      <Image class="brand-mark" src={gufoLogo} alt="" aria-hidden="true" width={40} height={40} densities={[1, 2]} loading="eager" />
+    </a>
+
+    <nav class="nav-links" aria-label={t('nav.label')}>
+      {navItems.map((i) => <a class="nav-link" href={i.href}>{i.label}</a>)}
+    </nav>
+
+    <LangSwitcher locale={locale} />
+
+    <a class="nav-discord" href={LINKS.discord} target="_blank" rel="noopener" aria-label={t('nav.discordAria')}>
+      <Icon name="discord" size={15} />
+      <span>{t('nav.discord')}</span>
+    </a>
+
+    <a class="nav-steam" href={LINKS.steam} target="_blank" rel="noopener" aria-label={t('nav.steamAria')}>
+      <Icon name="steam" size={16} />
+      <span class="cta-full">{t('nav.playOnSteam')}</span>
+      <span class="cta-short">{t('nav.playShort')}</span>
+    </a>
+
+    <button type="button" class="hamburger" aria-expanded="false" aria-controls="mobile-nav" aria-label={t('nav.openMenu')}
+      data-label-open={t('nav.openMenu')} data-label-close={t('nav.closeMenu')}>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </header>
+
+  <nav class="mobile-panel" id="mobile-nav" aria-label={t('nav.mobileLabel')}>
+    {navItems.map((i) => <a href={i.href}>{i.label}</a>)}
+    <a class="mobile-discord" href={LINKS.discord} target="_blank" rel="noopener">
+      <Icon name="discord" size={16} />
+      <span>{t('nav.discord')}</span>
+    </a>
+  </nav>
+</div>

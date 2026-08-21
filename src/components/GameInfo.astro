@@ -1,0 +1,53 @@
+---
+import { useTranslations, type Locale, type MessageKey } from '../i18n';
+import { Picture } from 'astro:assets';
+import imgCombat from '../assets/screenshots/ImmagineProvaGioco.png';
+import imgTime from '../assets/screenshots/ImmagineProvaTempo.png';
+import imgPower from '../assets/screenshots/ImmagineProvaPowerUps.png';
+import imgCollect from '../assets/screenshots/ImmagineProvaCollect.png';
+import imgWorld from '../assets/screenshots/ImmagineProvaAlienWorld.png';
+import imgProc from '../assets/screenshots/ImmagineProvaProcedural.png';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const features = [imgCombat, imgTime, imgPower, imgCollect, imgWorld, imgProc].map((img, i) => ({
+  img,
+  n: String(i + 1).padStart(2, '0'),
+  title: `game.f${i + 1}.title` as MessageKey,
+  body: `game.f${i + 1}.body` as MessageKey,
+  alt: `game.f${i + 1}.alt` as MessageKey,
+}));
+---
+<section class="section" id="game-info">
+  <div class="section-inner">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">{t('game.eyebrow')}</span>
+      <h2>{t('game.heading')}</h2>
+      <p class="lede">{t('game.intro')}</p>
+    </div>
+
+    <div class="features">
+      {features.map((f) => (
+        <article class="feature" data-reveal data-numeral={f.n}>
+          <div class="media-well">
+            <Picture
+              src={f.img}
+              alt={t(f.alt)}
+              widths={[640, 1000, 1400]}
+              sizes="(max-width: 1180px) 100vw, 1180px"
+              formats={['avif', 'webp']}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="feature-cap">
+            <h3>{t(f.title)}</h3>
+            <p>{t(f.body)}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Background from '../components/Background.astro';
+import { useTranslations, localeUrl, LINKS, DEFAULT_LOCALE } from '../i18n';
+
+/**
+ * GitHub Pages serves this single page for every missing path, whatever the
+ * locale prefix — so it speaks the default locale (per-key English fallback
+ * keeps t() safe). noindex; the two exits mirror the site's FOCUS: play on
+ * Steam, or return to the landing.
+ */
+const t = useTranslations(DEFAULT_LOCALE);
+---
+
+<Base
+  locale={DEFAULT_LOCALE}
+  page="landing"
+  title={t('notfound.title')}
+  description={t('meta.description')}
+  noindex
+>
+  <Background />
+  {/* id matches the Base skip-link target so it keeps working here */}
+  <main id="game-info" class="notfound">
+    <p class="notfound-code" aria-hidden="true">404</p>
+    <h1 class="notfound-heading">{t('notfound.heading')}</h1>
+    <p class="notfound-lead">{t('notfound.lead')}</p>
+    <div class="notfound-actions">
+      <a class="cta-steam" href={LINKS.steam} target="_blank" rel="noopener" aria-label={t('nav.steamAria')}>
+        {t('nav.playOnSteam')}
+      </a>
+      <a class="cta-ghost" href={localeUrl(DEFAULT_LOCALE, 'landing')}>{t('notfound.home')}</a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .notfound {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .notfound-code {
+    margin: 0;
+    font-size: clamp(5rem, 18vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    color: var(--accent-1, #a78bfa);
+    opacity: 0.35;
+    text-shadow: 0 0 48px rgba(167, 139, 250, 0.45);
+  }
+  .notfound-heading {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  }
+  .notfound-lead {
+    max-width: 34rem;
+    margin: 1rem 0 0;
+    opacity: 0.75;
+  }
+  .notfound-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2.25rem;
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import { LINKS, SOCIALS, useTranslations, type Locale } from '../i18n';
+import Icon from './Icon.astro';
+import { Picture } from 'astro:assets';
+import keyArt from '../assets/screenshots/ImmagineProvaGioco.png';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+<section class="section" id="community">
+  <div class="section-inner">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow eyebrow-violet">{t('community.eyebrow')}</span>
+      <h2>{t('community.heading')}</h2>
+      <p class="lede">{t('community.sub')}</p>
+    </div>
+
+    <div class="tiles">
+      <a class="tile tile-steam" href={LINKS.steam} target="_blank" rel="noopener" data-reveal>
+        <span class="tile-art" aria-hidden="true">
+          <Picture src={keyArt} alt="" widths={[600, 900]} sizes="(max-width: 900px) 100vw, 560px" formats={['avif', 'webp']} loading="lazy" decoding="async" />
+        </span>
+        <span class="badge badge-primary">{t('community.steam.badge')}</span>
+        <span class="tile-body">
+          <h3>{t('community.steam.title')}</h3>
+          <p>{t('community.steam.body')}</p>
+          <span class="tile-cta-steam"><Icon name="steam" size={19} />{t('community.steam.cta')}</span>
+        </span>
+      </a>
+
+      <a class="tile tile-discord" href={LINKS.discord} target="_blank" rel="noopener" data-reveal>
+        <span class="tile-bloom" aria-hidden="true"></span>
+        <span class="badge badge-social">{t('community.discord.badge')}</span>
+        <span class="tile-body">
+          <h3>{t('community.discord.title')}</h3>
+          <p>{t('community.discord.body')}</p>
+          <span class="tile-cta-discord"><Icon name="discord" size={19} />{t('community.discord.cta')} <span aria-hidden="true">→</span></span>
+        </span>
+      </a>
+    </div>
+
+    <div class="chips" data-reveal>
+      {SOCIALS.map((s) => (
+        <a class="chip" href={s.href} target="_blank" rel="noopener">
+          <Icon name={s.icon} size={18} />
+          <span>{s.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import { TEAM_NAMES, useTranslations, type Locale, type MessageKey } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+
+const initials = (name: string) => name.split(' ').map((w) => w[0]).slice(0, 2).join('');
+const members = TEAM_NAMES.map((name, i) => ({
+  name,
+  initials: initials(name),
+  role: `team.m${i + 1}.role` as MessageKey,
+  bio: `team.m${i + 1}.bio` as MessageKey,
+}));
+---
+<section class="team-section" id="team">
+  <div class="team-chart" aria-hidden="true"></div>
+  <div class="team-inner">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow eyebrow-violet">{t('team.eyebrow')}</span>
+      <h2>{t('team.heading')}</h2>
+      <p class="lede">{t('team.sub')}</p>
+    </div>
+
+    <ul class="team-grid">
+      {members.map((m) => (
+        <li class="member" data-reveal>
+          <span class="orb" aria-hidden="true">{m.initials}</span>
+          <h3>{m.name}</h3>
+          <p class="member-role">{t(m.role)}</p>
+          <p class="member-bio">{t(m.bio)}</p>
+        </li>
+      ))}
+    </ul>
+    {/* The handoff's "orb placeholders" note stays in the asset-request docs,
+        not on a public marketing page (client call, 2026-08-10). */}
+  </div>
+</section>
