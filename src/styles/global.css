@@ -6,6 +6,18 @@
 @import '@fontsource/inter/700.css';
 
 /* ============================================================
+   SYSTEMIC GUARD — keep this first.
+   The UA stylesheet's [hidden] { display: none } loses to ANY author rule
+   with a class selector, so an overlay carrying `hidden` can still render.
+   That failure is silent and has shipped three times on this project
+   (V2 boot overlay, cd1 modal, cd1 victory banner). !important makes the
+   attribute authoritative: if an element says hidden, it is hidden.
+   Verified empirically - an element with hidden + display:block must
+   compute to `none`.
+   ============================================================ */
+[hidden] { display: none !important; }
+
+/* ============================================================
    COSMIC DESCENT — design tokens
    Token block is the contract (Claude Design handoff).
    ============================================================ */
