@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LABYRAINTH - this address moved</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://gufo-games.labyrainth.com/" />
+    <script>
+      // Runs before the meta refresh below, so the computed path wins.
+      //
+      // Shipped LABYRAINTH builds open these URLs and cannot be patched
+      // retroactively (MainMenuUI.cpp, GameSettingsUI.cpp, DefaultGame.ini),
+      // so every legacy path has to keep working indefinitely.
+      //
+      // JS rather than meta refresh alone: the Community button opens
+      // /LandingPage/#community and a meta refresh silently drops the fragment.
+      // location.replace rather than assignment, so the dead URL does not end
+      // up in the back-button history.
+      (function () {
+        var NEW = 'https://gufo-games.labyrainth.com';
+        var p = location.pathname.replace(/^\/LandingPage/, '');
+        if (/^\/PageStructure\/Feedback\/feedback\.html$/i.test(p)) p = '/feedback/';
+        if (!p || p === '/index.html') p = '/';
+        location.replace(NEW + p + location.search + location.hash);
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=https://gufo-games.labyrainth.com/" />
+    <style>
+      body { margin:0; min-height:100vh; display:grid; place-items:center; background:#05030a;
+             color:#d6cdea; font:16px/1.7 system-ui,sans-serif; text-align:center; padding:24px; }
+      a { color:#a78bfa; }
+    </style>
+  </head>
+  <body>
+    <p>G.U.F.O. Games has moved to<br />
+      <a href="https://gufo-games.labyrainth.com/">gufo-games.labyrainth.com</a></p>
+  </body>
+</html>
