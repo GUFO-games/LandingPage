@@ -30,8 +30,16 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // feedback stays unlisted (one-way page); demo routes are review-only
-      filter: (page) => !page.includes('/feedback') && !page.includes('/demo'),
+      filter: (page) =>
+        // one-way page, deliberately unlisted
+        !page.includes('/feedback') &&
+        // review-only routes
+        !page.includes('/demo') &&
+        // Error page served by nginx's error_page 403 for expired cat links.
+        // It carries noindex, and submitting a noindex URL in a sitemap earns
+        // a "Submitted URL marked noindex" warning in Search Console - we would
+        // be asking Google to index "This link has expired".
+        !page.includes('/403'),
     }),
   ],
   vite: {

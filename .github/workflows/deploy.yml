@@ -12,8 +12,7 @@ name: Deploy
 
 on:
   push:
-    # TODO: drop feat/env-build-contract once WP11 is merged and live.
-    branches: [main, feat/env-build-contract]
+    branches: [main]
   workflow_dispatch:
     inputs:
       environment:
