@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import {
-  LOCALES, LOCALE_META, DEFAULT_LOCALE, localeUrl, absoluteUrl, LINKS, VIDEO_IDS, SITE_ORIGIN,
+  LOCALES, LOCALE_META, DEFAULT_LOCALE, localeUrl, absoluteUrl, LINKS, VIDEO_IDS, VIDEO_META, SITE_ORIGIN,
   useTranslations, type Locale,
 } from '../i18n';
 
@@ -49,9 +49,12 @@ const jsonLd = {
       author: { '@id': `${SITE_ORIGIN}/#gufo` },
       publisher: { '@id': `${SITE_ORIGIN}/#gufo` },
       sameAs: [LINKS.steam],
-      trailer: VIDEO_IDS.map((id, i) => ({
+      trailer: VIDEO_IDS.map((id) => ({
         '@type': 'VideoObject',
-        name: `LABYRAINTH trailer ${i + 1}`,
+        name: VIDEO_META[id].name,
+        // Required by Google for video rich results; without it these are
+        // ineligible and the Rich Results Test reports an error.
+        uploadDate: VIDEO_META[id].uploadDate,
         description,
         thumbnailUrl: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
         embedUrl: `https://www.youtube-nocookie.com/embed/${id}`,

@@ -85,6 +85,21 @@ export const SOCIALS = [
 
 export const VIDEO_IDS = ['EXqUSbjh_9k', 'yNO7C4TddEk', 'TF1v-1nuZSI'] as const;
 
+/**
+ * Per-video metadata for the VideoObject schema. `uploadDate` is a REQUIRED
+ * field for Google video rich results - without it the trailers are ineligible,
+ * which the Rich Results Test reports as an error rather than a warning.
+ * Values are the real YouTube publication timestamps, and the titles match the
+ * ones on the channel so the two describe the same thing.
+ * Deliberately kept out of the locale dictionaries: these are facts about the
+ * videos, not copy, and they must not vary by language.
+ */
+export const VIDEO_META: Record<(typeof VIDEO_IDS)[number], { name: string; uploadDate: string }> = {
+  'EXqUSbjh_9k': { name: 'LABYRAINTH Gameplay Trailer - first version', uploadDate: '2025-08-24T09:14:31-07:00' },
+  'yNO7C4TddEk': { name: 'LABYRAINTH Cinematic Story Trailer',          uploadDate: '2025-08-24T09:02:07-07:00' },
+  'TF1v-1nuZSI': { name: 'LABYRAINTH Teaser Trailer',                   uploadDate: '2025-08-24T08:49:51-07:00' },
+};
+
 /** Team names are never translated; role/bio come from the locale dictionary (team.mN.*). */
 export const TEAM_NAMES = [
   'Pietro Dondi', 'Giorgio Morico', 'Marta Silla', 'Giulio Posati',
