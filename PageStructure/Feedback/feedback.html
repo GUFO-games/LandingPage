@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>LABYRAINTH Feedback Center - this address moved</title>
+    <!-- This file exists so that ONE legacy path answers 200 instead of 404.
+         MainMenuUI.cpp (Survey button) in every shipped build opens
+         /LandingPage/PageStructure/Feedback/feedback.html and will keep doing
+         so for as long as those installs exist. The 404.html fallback already
+         forwards it correctly in a real browser, but a 200 is unambiguous
+         where a 404-that-happens-to-run-JS is not.
+
+         noindex matches the destination: /feedback/ on the live site is itself
+         noindex (unlisted Feedback Center, deliberately kept out of the
+         sitemap), so there is no ranking here to hand over - only an error row
+         in Search Console to stop generating. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://gufo-games.labyrainth.com/feedback/" />
+    <script>
+      // Identical rule to the root shim, kept verbatim rather than simplified so
+      // there is exactly one redirect behaviour to reason about. At this path the
+      // regex below matches and resolves to /feedback/.
+      (function () {
+        var NEW = 'https://gufo-games.labyrainth.com';
+        var p = location.pathname.replace(/^\/LandingPage/, '');
+        if (/^\/PageStructure\/Feedback\/feedback\.html$/i.test(p)) p = '/feedback/';
+        if (!p || p === '/index.html') p = '/';
+        location.replace(NEW + p + location.search + location.hash);
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0; url=https://gufo-games.labyrainth.com/feedback/" />
+    <style>
+      body { margin:0; min-height:100vh; display:grid; place-items:center; background:#05030a;
+             color:#d6cdea; font:16px/1.7 system-ui,sans-serif; text-align:center; padding:24px; }
+      a { color:#a78bfa; }
+    </style>
+  </head>
+  <body>
+    <p>The LABYRAINTH Feedback Center has moved to<br />
+      <a href="https://gufo-games.labyrainth.com/feedback/">gufo-games.labyrainth.com/feedback/</a></p>
+  </body>
+</html>

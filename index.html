@@ -3,7 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>LABYRAINTH - this address moved</title>
-    <meta name="robots" content="noindex, nofollow" />
+    <!-- Deliberately NO robots meta: this page is a 200 and must stay indexable
+         and followable.
+
+         GitHub Pages cannot emit a 301, so the canonical below plus the instant
+         meta refresh are the entire site-move signal available to us. A noindex
+         would override both - search engines drop the page and never read the
+         canonical - which discards the ranking this URL still holds instead of
+         handing it over to the new site.
+
+         404.html keeps its noindex. Only a 200 can transfer anything. -->
     <link rel="canonical" href="https://gufo-games.labyrainth.com/" />
     <script>
       // Runs before the meta refresh below, so the computed path wins.
