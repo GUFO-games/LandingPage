@@ -1,5 +1,27 @@
 # HANDOFF — LabyrAInth Landing Page → go-live phase
 
+> ## ⚠️ SUPERSEDED — 2026-08-26. This document is history, not instructions.
+>
+> Everything it describes as "what remains" **is done**. The site went live on the VPS on 2026-08-21 and was submitted to Google and Bing on 2026-08-22.
+>
+> | | |
+> |---|---|
+> | prod | `https://gufo-games.labyrainth.com` |
+> | cat | `https://cat.gufo-games.labyrainth.com` — gated, noindex |
+> | deploy | push to `main` → cat · `workflow_dispatch` → cat or prod, on a self-hosted runner |
+> | GitHub Pages | **retired**, except a deliberate `gh-pages` redirect shim (see below) |
+>
+> **Two things in here will actively mislead you:**
+>
+> 1. **GitHub Pages is no longer the target.** The `gh-pages` branch still exists, but only as a redirect shim — shipped LabyrAInth builds hardcode `gufo-games.github.io/LandingPage/...` URLs and cannot be patched retroactively. It is not a deploy target and must not be treated as one. It becomes deletable once a game build carrying the new URLs has been out a while (`PieMH/LabyrAInth#5`, merged 2026-08-26).
+> 2. **The build is env-driven now** — `serve` / `build:cat` / `build:prod` against `.env.<mode>`, with a post-build contract check. Any build instruction below predates that.
+>
+> **Current sources of truth:** `GUFO-games/labyrainth-infra` for the server, the pipeline, runbooks and findings · `docs/technical/launch-seo-checklist.md` in the ops repo for the findability doctrine · this repo's own `.github/workflows/deploy.yml` for how a deploy actually happens.
+>
+> Kept because the pre-deploy audit reasoning below is still sound and still worth reading.
+
+---
+
 Written 2026-08-12 by the ops-repo session that audited and completed the pre-deploy launch/SEO layer. Audience: the next Claude Code session (or human) taking this repo to production. **Everything pre-deploy is done and verified; what remains is the deploy pipeline + the post-deploy findability run.**
 
 Related docs: business/process live in the ops repo `E:\Pietro\AI\AIforBusinesses` — `docs/technical/launch-seo-checklist.md` (v1.1, the doctrine this repo was audited against), `sites/gufo-landing/` (DESIGN.md, content contract, design handoff). This file is self-contained if you don't have that repo.
